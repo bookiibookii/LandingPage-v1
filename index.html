@@ -1,0 +1,532 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>부키부키 BOOKIIBOOKII — 책을 나누면 이야기가 시작돼요</title>
+<link rel="preconnect" href="https://cdn.jsdelivr.net" />
+<link rel="stylesheet" as="style" crossorigin
+  href="https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/static/pretendard.css"
+  onload="this.rel='stylesheet'" />
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/static/pretendard.css" /></noscript>
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<!-- =============== NAV =============== -->
+<nav class="nav" id="nav">
+  <div class="wrap">
+    <a href="#top" class="brand" aria-label="부키부키 홈">
+      <img class="wordmark" src="assets/wordmark-bookiibookii.png" alt="BOOKIIBOOKII" />
+    </a>
+    <div class="nav-links">
+      <a href="#why">서비스 소개</a>
+      <a href="#features">주요 기능</a>
+      <a href="#demo">앱 체험</a>
+      <a href="#faq">FAQ</a>
+    </div>
+    <button class="cta-pill" onclick="document.getElementById('download').scrollIntoView({behavior:'smooth'})">앱 다운로드</button>
+  </div>
+</nav>
+
+<!-- =============== HERO =============== -->
+<section class="hero" id="top">
+  <div class="wrap">
+    <div class="hero-grid">
+      <div class="hero-text">
+        <span class="badge reveal d1">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+          교환독서 파트너 매칭 앱
+        </span>
+        <h1 class="h1 reveal d2">
+          책을 나누면<br/><span class="accent">이야기</span>가 시작돼요
+        </h1>
+        <p class="hero-body reveal d3">함께 읽을 사람을 찾고, 책을 교환하고,
+독서 기록을 차곡차곡 쌓아가세요.</p>
+        <div class="cta-row reveal d4">
+          <button class="btn btn-primary" onclick="document.getElementById('download').scrollIntoView({behavior:'smooth'})">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M12 18h.01"/></svg>
+            지금 다운로드
+          </button>
+          <button class="btn btn-secondary" onclick="document.getElementById('features').scrollIntoView({behavior:'smooth'})">
+            기능 살펴보기 →
+          </button>
+        </div>
+        <div class="hero-stats reveal d5">
+          <div>
+            <div class="stat-num">12,400+</div>
+            <div class="stat-label">함께 읽고 있는 사람</div>
+          </div>
+          <div>
+            <div class="stat-num">3,800+</div>
+            <div class="stat-label">교환독서 그룹</div>
+          </div>
+          <div>
+            <div class="stat-num">48k</div>
+            <div class="stat-label">교환된 책</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PHONE MOCKUPS -->
+      <div class="phones reveal d5">
+        <!-- Left phone: Library -->
+        <div class="phone phone-side phone-left" aria-hidden="true">
+          <div class="phone-inner">
+            <div class="scr">
+              <div class="status-bar"><span>9:30</span><div class="dots"><i></i><i></i><i></i></div></div>
+              <div class="app-header"><span class="avatar"></span><span>내 서재</span><span class="bell"></span></div>
+              <div class="side-content">
+                <div style="font:600 11px/1.3 var(--font);color:var(--g900)">완독한 책 · 35권</div>
+                <div class="bookshelf">
+                  <div class="spine s1"><span>달까지<br/>가자</span><span class="sp-author">장류진</span></div>
+                  <div class="spine s2"><span>아몬드</span><span class="sp-author">손원평</span></div>
+                  <div class="spine s3"><span>채식<br/>주의자</span><span class="sp-author">한강</span></div>
+                  <div class="spine s4"><span>살인자의<br/>기억법</span><span class="sp-author">김영하</span></div>
+                  <div class="spine s5"><span>소년이<br/>온다</span><span class="sp-author">한강</span></div>
+                  <div class="spine s6"><span>조응</span><span class="sp-author">한정원</span></div>
+                </div>
+                <div style="font:600 11px/1.3 var(--font);color:var(--g900);margin-top:6px">독서카드 · 24장</div>
+                <div style="background:var(--main-pale);border-radius:8px;padding:8px;font:500 9px/1.4 Georgia, serif;font-style:italic;color:var(--g900)">"책은 읽는 동안 우리를 다른 사람으로 만든다."<div style="font:500 8px/1 var(--font);font-style:normal;color:var(--g500);margin-top:4px">아몬드 · 손원평</div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right phone: Recommendations -->
+        <div class="phone phone-side phone-right" aria-hidden="true">
+          <div class="phone-inner">
+            <div class="scr">
+              <div class="status-bar"><span>9:30</span><div class="dots"><i></i><i></i><i></i></div></div>
+              <div class="app-header"><span class="avatar"></span><span>추천</span><span class="bell"></span></div>
+              <div class="side-content">
+                <div style="font:600 11px/1.3 var(--font);color:var(--g900)">취향이 비슷한 사람들</div>
+                <div class="rec-card">
+                  <div class="rec-cover" style="background:linear-gradient(160deg,#2E5642,#1F3D2E)"></div>
+                  <div style="flex:1;min-width:0"><div class="t">소년이 온다</div><div class="a">한강 · 한국소설</div><div class="chip" style="background:var(--main-pale);color:var(--main)">📬 택배</div></div>
+                </div>
+                <div class="rec-card">
+                  <div class="rec-cover" style="background:linear-gradient(160deg,#E8DFCF,#D9CBB0)"></div>
+                  <div style="flex:1;min-width:0"><div class="t">조응</div><div class="a">한정원 · 에세이</div><div class="chip" style="background:var(--sub-pale);color:var(--sub)">🤝 직접</div></div>
+                </div>
+                <div class="rec-card">
+                  <div class="rec-cover" style="background:linear-gradient(160deg,#1B2440,#0E1530)"></div>
+                  <div style="flex:1;min-width:0"><div class="t">프로젝트 헤일메리</div><div class="a">앤디 위어 · SF</div><div class="chip" style="background:var(--main-pale);color:var(--main)">📬 택배</div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Center phone: Home -->
+        <div class="phone phone-main">
+          <!-- Floating notif -->
+          <div class="notif">
+            <span class="dot"></span>
+            <div>
+              <div style="font:600 11px/1.2 var(--font)">매칭 완료!</div>
+              <div class="meta">헤일리님과 책을 교환해요</div>
+            </div>
+          </div>
+
+          <div class="phone-inner">
+            <div class="scr">
+              <div class="status-bar"><span>9:30</span><div class="dots"><i></i><i></i><i></i></div></div>
+              <div class="app-header"><span class="avatar"></span><span>탐색</span><span class="bell"></span></div>
+
+              <div class="greeting">
+                <div class="g1">안녕하세요, <span class="b">sayo</span></div>
+                <div class="g1">책과 함께 하는 오후 되세요</div>
+              </div>
+              <div class="search-bar">그룹을 검색해보세요<span class="dot"></span></div>
+              <div class="tabs">
+                <span class="on">추천</span><span>전체</span><span>신청한 그룹</span>
+              </div>
+
+              <div class="section-title">
+                신규 그룹을 확인해보세요
+                <small>오늘 만들어진 따끈따끈한 그룹들</small>
+              </div>
+              <div class="cards-row">
+                <div class="mini-card">
+                  <div class="mini-cover green">소년이<br/>온다</div>
+                  <div class="t">함께 완독해요</div>
+                  <div class="a">한강 · 한국소설</div>
+                  <div class="chip">📬 택배</div>
+                </div>
+                <div class="mini-card">
+                  <div class="mini-cover warm">살인자의<br/>기억법</div>
+                  <div class="t">김영하 도장깨기</div>
+                  <div class="a">김영하 · 소설</div>
+                  <div class="chip sub">🤝 직접</div>
+                </div>
+              </div>
+
+              <div class="section-title" style="border-top:8px solid var(--g100)">
+                오늘의 독서카드
+                <small>마음에 든 문장을 모아보세요</small>
+              </div>
+              <div style="padding:0 14px 14px;background:white">
+                <div style="background:linear-gradient(160deg,#FFF8F1,#FFF);border:1px solid var(--main-pale);border-radius:10px;padding:12px;position:relative">
+                  <div style="position:absolute;top:2px;left:8px;font:700 28px/1 Georgia, serif;color:var(--main-pale)">"</div>
+                  <div style="font:500 10px/1.5 Georgia, serif;font-style:italic;color:var(--g900);margin-top:8px">책은 읽는 동안 우리를 다른 사람으로 만든다.</div>
+                  <div style="font:500 8px/1 var(--font);color:var(--g500);margin-top:6px">p.142 · 아몬드, 손원평</div>
+                </div>
+              </div>
+            </div>
+            <!-- Tab bar -->
+            <div class="tab-bar">
+              <div class="t on"><span></span></div>
+              <div class="t"><span></span></div>
+              <div class="t"><span></span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =============== WHY =============== -->
+<section class="why section-pad" id="why">
+  <div class="wrap">
+    <div class="why-header reveal">
+      <div class="eyebrow">WHY 부키부키</div>
+      <h2 class="h2">교환독서, 이렇게 하면
+쉽고 즐거워요</h2>
+      <p class="lead" style="max-width:520px;margin:0 auto">혼자 읽는 것보다 더 깊은 독서 경험을.
+부담 없이, 자연스럽게.</p>
+    </div>
+    <div class="why-grid">
+      <div class="why-card reveal d1">
+        <div class="why-icon warm">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20V3H6.5A2.5 2.5 0 0 0 4 5.5z"/><path d="M8 7h8M8 11h6"/></svg>
+        </div>
+        <h3>가볍게 시작해요</h3>
+        <p>무거운 독서 토론 없이도 괜찮아요. 책 한 권을 교환하는 것부터 시작하면 돼요.</p>
+      </div>
+      <div class="why-card reveal d2">
+        <div class="why-icon cool">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        </div>
+        <h3>파트너를 쉽게 찾아요</h3>
+        <p>혼자 하기 어렵다면 부키부키가 취향이 맞는 독서 파트너를 연결해 드려요.</p>
+      </div>
+      <div class="why-card reveal d3">
+        <div class="why-icon warm">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h4v16H4zM10 4h4v16h-4zM16 6l3.5-1 4 14-3.5 1z"/></svg>
+        </div>
+        <h3>기록이 차곡차곡</h3>
+        <p>교환하며 읽은 모든 책이 귀엽고 아기자기한 내 서재에 남아요. 독서 히스토리가 쌓여가는 재미.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =============== FEATURES =============== -->
+<section class="features section-pad" id="features">
+  <div class="wrap">
+
+    <!-- Feature 1 — Group matching -->
+    <div class="feature-row">
+      <div class="feature-text reveal">
+        <div class="eyebrow">그룹 매칭</div>
+        <h2>내 책을 올리면
+파트너가 나타나요</h2>
+        <p>소장한 책으로 그룹을 만들거나, 읽고 싶었던 책을 가진 사람의 그룹에 참여하세요. 택배 또는 직접 교환 중 편한 방식을 선택할 수 있어요.</p>
+        <div class="chips">
+          <span class="chip warm">📬 택배 교환</span>
+          <span class="chip cool">🤝 직접 교환</span>
+          <span class="chip">그룹 댓글</span>
+          <span class="chip">참여 신청/수락</span>
+        </div>
+      </div>
+      <div class="feature-visual reveal d1">
+        <div class="group-card">
+          <div class="head">
+            <div class="book-cover">
+              <div>달까지<br/>가자</div>
+              <div class="bc-author">장류진</div>
+            </div>
+            <div class="info">
+              <div class="gname">함께 완독해요</div>
+              <div class="gmeta">7일 · 무스</div>
+              <div class="gchips">
+                <span class="chip warm" style="font-size:12px;padding:5px 10px">📬 택배 교환</span>
+                <span class="chip" style="font-size:12px;padding:5px 10px">2/4명</span>
+              </div>
+            </div>
+          </div>
+          <hr/>
+          <div class="req-row">
+            <div class="avatar-pill">헤</div>
+            <div>
+              <div class="name">헤일리</div>
+              <div class="sub">독서 파트너 신청</div>
+            </div>
+            <div class="actions">
+              <button class="btn-mini stroke">거절</button>
+              <button class="btn-mini main">수락</button>
+            </div>
+          </div>
+        </div>
+        <div class="f-deco-pill" style="top:24px;right:24px"><span class="dot"></span>새 신청 1</div>
+      </div>
+    </div>
+
+    <!-- Feature 2 — Tracker -->
+    <div class="feature-row reverse">
+      <div class="feature-text reveal">
+        <div class="eyebrow">북트래커</div>
+        <h2>교환 과정이
+한눈에 보여요</h2>
+        <p>책이 어디에 있는지 실시간으로 확인하세요. 발송부터 반납까지 단계별로 트래킹되어 걱정 없이 교환할 수 있어요.</p>
+        <div class="chips">
+          <span class="chip warm">실시간 상태 확인</span>
+          <span class="chip">운송장 등록</span>
+          <span class="chip cool">반납 완료 알림</span>
+        </div>
+      </div>
+      <div class="feature-visual reveal d1">
+        <div class="tracker">
+          <h4>교환 중</h4>
+          <div class="book">소년이 온다 · 한강</div>
+          <div class="steps">
+            <div class="step done">
+              <div class="step-num">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              </div>
+              <div class="step-body">
+                <div class="step-title">교환 시작</div>
+                <div class="step-sub">10월 14일</div>
+              </div>
+            </div>
+            <div class="step done">
+              <div class="step-num">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              </div>
+              <div class="step-body">
+                <div class="step-title">책 발송</div>
+                <div class="step-sub">10월 16일 · 운송장 6824-···</div>
+              </div>
+            </div>
+            <div class="step active">
+              <div class="step-num">3</div>
+              <div class="step-body">
+                <div class="step-title">독서 중 📖</div>
+                <div class="step-sub">D-12 남았어요</div>
+              </div>
+            </div>
+            <div class="step">
+              <div class="step-num">4</div>
+              <div class="step-body">
+                <div class="step-title">반납 발송</div>
+                <div class="step-sub">예정</div>
+              </div>
+            </div>
+            <div class="step">
+              <div class="step-num">5</div>
+              <div class="step-body">
+                <div class="step-title">교환 완료</div>
+                <div class="step-sub">예정</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Feature 3 — Library + reading card -->
+    <div class="feature-row">
+      <div class="feature-text reveal">
+        <div class="eyebrow">서재 &amp; 독서카드</div>
+        <h2>읽은 책이 서재에
+차곡차곡 쌓여요</h2>
+        <p>마음에 드는 문장은 독서카드로 저장하고, 완독한 책은 내 서재에 꽂아두세요. 교환독서의 모든 기록이 아기자기하게 남아요.</p>
+        <div class="chips">
+          <span class="chip warm">문장 수집</span>
+          <span class="chip">이미지 카드</span>
+          <span class="chip cool">별점 &amp; 감상평</span>
+          <span class="chip">SNS 공유</span>
+        </div>
+      </div>
+      <div class="feature-visual reveal d1">
+        <div class="library">
+          <div class="shelf-label">
+            <span>내 서재</span><span class="count">12권</span>
+          </div>
+          <div class="shelf">
+            <div class="spine-tall s1"><span>달까지<br/>가자</span><span class="sp-author">장류진</span></div>
+            <div class="spine-tall s2"><span>아몬드</span><span class="sp-author">손원평</span></div>
+            <div class="spine-tall s3"><span>소년이<br/>온다</span><span class="sp-author">한강</span></div>
+            <div class="spine-tall s4"><span>살인자의<br/>기억법</span><span class="sp-author">김영하</span></div>
+          </div>
+          <div class="reading-card">
+            <span class="quote">"</span>
+            <div class="q-text">책은 읽는 동안 우리를<br/>다른 사람으로 만든다.</div>
+            <div class="q-meta">p.142<span class="div">·</span>아몬드, 손원평</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- =============== DEMO =============== -->
+<section class="demo section-pad" id="demo">
+  <div class="wrap">
+
+    <!-- Header -->
+    <div class="demo-header reveal">
+      <div class="eyebrow">앱 미리보기</div>
+      <h2 class="h2">직접 체험해보세요</h2>
+      <p class="lead">부키부키의 핵심 기능을 지금 바로 경험해보세요.</p>
+    </div>
+
+    <!-- Tab bar: 4 tabs -->
+    <div class="demo-tabs">
+      <button class="demo-tab active" data-tab="0">그룹 탐색</button>
+      <button class="demo-tab" data-tab="1">북트래커</button>
+      <button class="demo-tab" data-tab="2">서재</button>
+      <button class="demo-tab" data-tab="3">마이페이지</button>
+    </div>
+
+    <!-- Phone frame + screen area -->
+    <div class="demo-stage">
+
+      <!-- Phone frame (centered) -->
+      <div class="demo-phone">
+        <div class="demo-phone-inner">
+          <div class="demo-status-bar">
+            <span>9:30</span>
+            <div class="demo-dots"><i></i><i></i><i></i></div>
+          </div>
+          <!-- Screen container: screens swap here -->
+          <div class="demo-screen-wrap" id="demoScreenWrap">
+            <!-- screens injected by JS -->
+          </div>
+          <!-- Bottom tab bar -->
+          <div class="demo-tabbar">
+            <div class="demo-tb active"><span></span></div>
+            <div class="demo-tb"><span></span></div>
+            <div class="demo-tb"><span></span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Step dots + prev/next controls -->
+      <div class="demo-controls">
+        <button class="demo-arrow" id="demoPrev" aria-label="이전 화면">←</button>
+        <div class="demo-dots-row" id="demoDots"></div>
+        <button class="demo-arrow" id="demoNext" aria-label="다음 화면">→</button>
+      </div>
+
+      <!-- Step label -->
+      <div class="demo-step-label" id="demoStepLabel"></div>
+
+    </div>
+  </div>
+</section>
+
+<!-- =============== FAQ =============== -->
+<section class="faq section-pad" id="faq">
+  <div class="wrap">
+    <div class="faq-header reveal">
+      <div class="eyebrow">FAQ</div>
+      <h2 class="h2">자주 묻는 질문</h2>
+    </div>
+    <div class="faq-list">
+      <div class="faq-item reveal d1">
+        <div class="faq-q">
+          <span class="qmark">Q</span>
+          <span class="faq-q-text">교환독서가 처음인데 참여할 수 있나요?</span>
+          <span class="faq-plus">+</span>
+        </div>
+        <div class="faq-a"><div class="faq-a-inner">물론이에요! 부키부키는 교환독서를 처음 하는 분들도 쉽게 시작할 수 있도록 설계되어 있어요. 소장한 책 한 권만 있으면 바로 그룹을 만들거나 참여할 수 있어요.</div></div>
+      </div>
+      <div class="faq-item reveal d1">
+        <div class="faq-q">
+          <span class="qmark">Q</span>
+          <span class="faq-q-text">책이 손상되거나 분실되면 어떻게 되나요?</span>
+          <span class="faq-plus">+</span>
+        </div>
+        <div class="faq-a"><div class="faq-a-inner">북트래커를 통해 단계별 상태를 기록하기 때문에 문제 발생 시 추적이 가능해요. 교환 전 책 상태를 미리 확인하고, 파트너와 소통할 수 있는 채팅 기능도 제공돼요.</div></div>
+      </div>
+      <div class="faq-item reveal d1">
+        <div class="faq-q">
+          <span class="qmark">Q</span>
+          <span class="faq-q-text">교환 방식은 택배만 가능한가요?</span>
+          <span class="faq-plus">+</span>
+        </div>
+        <div class="faq-a"><div class="faq-a-inner">아니에요! 택배 교환과 직접 교환(오프라인 만남) 중 원하는 방식을 선택할 수 있어요. 그룹 생성 시 교환 방식을 설정하면 돼요.</div></div>
+      </div>
+      <div class="faq-item reveal d1">
+        <div class="faq-q">
+          <span class="qmark">Q</span>
+          <span class="faq-q-text">독서카드는 무엇인가요?</span>
+          <span class="faq-plus">+</span>
+        </div>
+        <div class="faq-a"><div class="faq-a-inner">책을 읽으면서 마음에 드는 문장(인용구)이나 사진을 카드 형태로 저장하는 기능이에요. 저장된 독서카드는 SNS로 공유하거나 서재에 모아볼 수 있어요.</div></div>
+      </div>
+      <div class="faq-item reveal d1">
+        <div class="faq-q">
+          <span class="qmark">Q</span>
+          <span class="faq-q-text">어떤 소셜 로그인을 지원하나요?</span>
+          <span class="faq-plus">+</span>
+        </div>
+        <div class="faq-a"><div class="faq-a-inner">카카오, 구글, 애플 소셜 로그인을 지원해요. 별도 회원가입 없이 간편하게 시작할 수 있어요.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =============== DOWNLOAD CTA =============== -->
+<section class="dl" id="download">
+  <div class="wrap">
+    <h2 class="reveal">지금, 첫 교환독서를
+<span class="accent">시작해 보세요</span></h2>
+    <p class="reveal d1">책 한 권이 새로운 인연이 될 수 있어요.
+부키부키가 함께할게요.</p>
+    <div class="store-row reveal d2">
+      <button class="store-btn">
+        <span class="ic">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M16.5 2.5c0 1.2-.5 2.4-1.3 3.2-.9.9-2.3 1.6-3.5 1.5-.1-1.2.4-2.4 1.2-3.2.9-.9 2.4-1.5 3.6-1.5zm4 14.4c-.5 1.1-.8 1.6-1.4 2.6-.9 1.4-2.1 3.1-3.6 3.1-1.3 0-1.7-.9-3.5-.9s-2.2.9-3.6.9c-1.5 0-2.7-1.6-3.6-2.9-2.5-3.6-2.8-7.9-1.2-10.2 1.1-1.6 2.9-2.6 4.6-2.6 1.7 0 2.8.9 4.2.9 1.4 0 2.2-.9 4.2-.9 1.5 0 3.1.8 4.2 2.2-3.7 2-3.1 7.3.7 7.8z"/></svg>
+        </span>
+        <div>
+          <div class="lbl">Download on the</div>
+          <div class="name">App Store</div>
+        </div>
+      </button>
+      <button class="store-btn">
+        <span class="ic">
+          <svg width="20" height="20" viewBox="0 0 24 24"><path fill="#A4C639" d="M3.6 4.3c-.4.4-.6 1-.6 1.6v12.2c0 .6.2 1.2.6 1.6l9.2-7.7L3.6 4.3z"/><path fill="#FFCE00" d="M14.5 9.7l2.6 1.5c.8.5.8 1.6 0 2.1l-2.6 1.5-1.7-2.5 1.7-2.6z"/><path fill="#FF4444" d="M3.6 4.3l9.2 7.7L14.5 9.7 4.5 3.9c-.3-.2-.6-.2-.9.4z"/><path fill="#00C853" d="M3.6 19.7l9.2-7.7 1.7 2.6-10 5.8c-.4-.1-.7-.2-.9-.7z"/></svg>
+        </span>
+        <div>
+          <div class="lbl">Get it on</div>
+          <div class="name">Google Play</div>
+        </div>
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- =============== FOOTER =============== -->
+<footer class="footer">
+  <div class="wrap">
+    <div class="left">
+      <span class="brand" style="color:white">부키부키</span>
+      <span class="copyright">© 2025 BOOKIIBOOKII. All rights reserved.</span>
+    </div>
+    <div class="footer-links">
+      <a href="#why">서비스 소개</a>
+      <a href="#">이용약관</a>
+      <a href="#">개인정보처리방침</a>
+      <a href="#">문의하기</a>
+    </div>
+  </div>
+</footer>
+
+<script src="main.js"></script>
+</body>
+</html>
