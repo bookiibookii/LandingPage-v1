@@ -833,45 +833,106 @@ section {
   margin-top: 2px;
 }
 
+/* Legal pages nav */
+.legal-nav {
+  background: white;
+  border-bottom: 1px solid var(--g200);
+  padding: 0 24px;
+}
+.legal-nav-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 52px;
+}
+.legal-nav-home {
+  font-size: 14px;
+  color: var(--g600);
+  text-decoration: none;
+}
+.legal-nav-links {
+  display: flex;
+  gap: 24px;
+}
+.legal-nav-links a {
+  font-size: 14px;
+  color: var(--g600);
+  text-decoration: none;
+}
+.legal-nav-links a:hover,
+.legal-nav-home:hover {
+  color: var(--g900);
+}
+
+/* Legal pages date meta */
+.legal-meta {
+  font-size: 13px;
+  color: var(--g600);
+  line-height: 2;
+  margin-bottom: 48px;
+}
+.legal-meta-label {
+  font-weight: 600;
+  display: inline-block;
+  width: 90px;
+}
+
 /* Footer */
 .footer {
   background: var(--g900);
   color: var(--g500);
   padding: 48px 0;
-  font: 400 13px/1.5 var(--font);
-  letter-spacing: var(--tracking);
+  font: 400 13px/1.6 var(--font);
 }
 .footer .wrap {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 24px;
-  flex-wrap: wrap;
-}
-.footer .brand {
-  color: white;
-  font-weight: 800;
-  font-size: 16px;
-}
-.footer .left {
-  display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 0;
 }
-.footer .copyright {
-  color: var(--g500);
+.footer-top {
+  margin-bottom: 24px;
 }
 .footer-links {
   display: flex;
-  gap: 24px;
+  gap: 20px;
   flex-wrap: wrap;
 }
 .footer-links a {
-  color: var(--g500);
-  transition: color 0.15s ease;
+  color: var(--g400);
+  text-decoration: none;
+  font-size: 13px;
+  transition: color 0.15s;
 }
 .footer-links a:hover {
   color: white;
+}
+.footer-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-bottom: 24px;
+}
+.footer-info p {
+  color: var(--g500);
+  font-size: 13px;
+  margin: 0;
+}
+.footer-info a {
+  color: var(--g500);
+}
+.footer-company {
+  font-weight: 700;
+  color: var(--g400) !important;
+  margin-bottom: 8px !important;
+}
+.footer-copyright {
+  color: var(--g600);
+  font-size: 12px;
+  margin: 0;
+  border-top: 1px solid var(--g800);
+  padding-top: 20px;
 }
 
 /* =========================================================
@@ -967,12 +1028,10 @@ section {
     width: 100%;
   }
   .footer .wrap {
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
+    gap: 0;
   }
-  .footer .left {
-    align-items: center;
+  .legal-nav-links {
+    gap: 16px;
   }
   .faq-q {
     padding: 18px 20px;
