@@ -52,21 +52,18 @@ export default function Faq() {
           <h2 className="h2">자주 묻는 질문</h2>
         </div>
         <div className="faq-list">
-          {FAQ_ITEMS.map((item, i) => {
-            const isOpen = openIndex === i
-            return (
-              <div key={i} className={`faq-item reveal d1${isOpen ? ' open' : ''}`}>
-                <div className="faq-q" onClick={() => toggle(i)}>
-                  <span className="qmark">Q</span>
-                  <span className="faq-q-text">{item.q}</span>
-                  <span className="faq-plus" />
-                </div>
-                <div className="faq-a">
-                  <div className="faq-a-inner">{item.a}</div>
-                </div>
+          {FAQ_ITEMS.map((item, i) => (
+            <div key={i} className={`faq-item reveal d1${openIndex === i ? ' open' : ''}`}>
+              <div className="faq-q" onClick={() => toggle(i)}>
+                <span className="qmark">Q</span>
+                <span className="faq-q-text">{item.q}</span>
+                <span className="faq-plus" />
               </div>
-            )
-          })}
+              <div className="faq-a">
+                <div className="faq-a-inner">{item.a}</div>
+              </div>
+            </div>
+          ))}
         </div>
       </div>
     </section>
