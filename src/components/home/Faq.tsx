@@ -53,14 +53,18 @@ export default function Faq() {
         </div>
         <div className="faq-list">
           {FAQ_ITEMS.map((item, i) => (
-            <div key={i} className={`faq-item reveal d1${openIndex === i ? ' open' : ''}`}>
-              <div className="faq-q" onClick={() => toggle(i)}>
-                <span className="qmark">Q</span>
-                <span className="faq-q-text">{item.q}</span>
-                <span className="faq-plus" />
-              </div>
-              <div className="faq-a">
-                <div className="faq-a-inner">{item.a}</div>
+            // reveal 래퍼: IntersectionObserver가 이 요소에만 visible 추가
+            // faq-item: React가 open 클래스만 관리 — 서로 간섭 없음
+            <div key={i} className="reveal d1">
+              <div className={`faq-item${openIndex === i ? ' open' : ''}`}>
+                <div className="faq-q" onClick={() => toggle(i)}>
+                  <span className="qmark">Q</span>
+                  <span className="faq-q-text">{item.q}</span>
+                  <span className="faq-plus" />
+                </div>
+                <div className="faq-a">
+                  <div className="faq-a-inner">{item.a}</div>
+                </div>
               </div>
             </div>
           ))}
