@@ -26,8 +26,6 @@ const FAQ_ITEMS = [
 export default function Faq() {
   const sectionRef = useRef<HTMLElement>(null)
   const [openIndex, setOpenIndex] = useState<number | null>(null)
-  const outerRefs = useRef<(HTMLDivElement | null)[]>([])
-  const innerRefs = useRef<(HTMLDivElement | null)[]>([])
 
   useEffect(() => {
     const io = new IntersectionObserver(
@@ -41,18 +39,6 @@ export default function Faq() {
     sectionRef.current?.querySelectorAll('.reveal').forEach(el => io.observe(el))
     return () => io.disconnect()
   }, [])
-
-  // imperatively set max-height after each openIndex change
-  // reads height from .faq-a-inner (unconstrained) to avoid scrollHeight=0 bug
-  useEffect(() => {
-    outerRefs.current.forEach((outer, i) => {
-      if (!outer) return
-      const inner = innerRefs.current[i]
-      outer.style.maxHeight = openIndex === i
-        ? `${inner?.offsetHeight ?? 0}px`
-        : '0px'
-    })
-  }, [openIndex])
 
   const toggle = (index: number) => {
     setOpenIndex(prev => prev === index ? null : index)
@@ -75,16 +61,8 @@ export default function Faq() {
                   <span className="faq-q-text">{item.q}</span>
                   <span className="faq-plus" />
                 </div>
-                <div
-                  className="faq-a"
-                  ref={el => { outerRefs.current[i] = el }}
-                >
-                  <div
-                    className="faq-a-inner"
-                    ref={el => { innerRefs.current[i] = el }}
-                  >
-                    {item.a}
-                  </div>
+                <div className="faq-a">
+                  <div className="faq-a-inner">{item.a}</div>
                 </div>
               </div>
             )
