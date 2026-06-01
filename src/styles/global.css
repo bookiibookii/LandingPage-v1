@@ -241,7 +241,10 @@ section { position: relative; }
 .faq-q { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 22px 24px; cursor: pointer; font: 600 16px/1.5 var(--font); letter-spacing: var(--tracking); color: var(--g900); user-select: none; }
 .faq-q .qmark { width: 22px; height: 22px; border-radius: 50%; background: var(--main-pale); color: var(--main); display: inline-flex; align-items: center; justify-content: center; font: 700 12px/1 var(--font); flex-shrink: 0; }
 .faq-q-text { flex: 1; }
-.faq-plus { width: 32px; height: 32px; border-radius: 50%; background: var(--g100); color: var(--g700); display: inline-flex; align-items: center; justify-content: center; font: 300 20px/1 var(--font); transition: transform 0.3s ease, background 0.2s ease, color 0.2s ease; flex-shrink: 0; }
+.faq-plus { width: 32px; height: 32px; border-radius: 50%; background: var(--g100); color: var(--g700); display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; position: relative; transform-origin: center center; transition: transform 0.3s ease, background 0.2s ease; }
+.faq-plus::before, .faq-plus::after { content: ''; position: absolute; background: currentColor; border-radius: 1px; top: 50%; left: 50%; }
+.faq-plus::before { width: 13px; height: 2px; transform: translate(-50%, -50%); }
+.faq-plus::after { width: 2px; height: 13px; transform: translate(-50%, -50%); }
 .faq-item.open .faq-plus { background: var(--main); color: white; transform: rotate(45deg); }
 .faq-a { max-height: 0; overflow: hidden; transition: max-height 0.35s ease; }
 .faq-a-inner { padding: 0 24px 24px; font: 400 15px/1.7 var(--font); letter-spacing: var(--tracking); color: var(--g700); }

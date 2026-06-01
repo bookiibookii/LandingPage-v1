@@ -17,7 +17,7 @@ export default function Footer() {
           <p>주소 &nbsp;&nbsp; 서울 종로구 종로1가 1</p>
           <p>유선번호 &nbsp;&nbsp; 010-7903-2321</p>
           <p>사업자등록번호 &nbsp;&nbsp; 000-00-00000</p>
-          <p>문의 이메일 &nbsp;&nbsp; <a href="mailto:bookkiibookkii@gmail.com">bookkiibookkii@gmail.com</a></p>
+          <p>문의 이메일 &nbsp;&nbsp; <a href="mailto:bookiimate@gmail.com">bookiimate@gmail.com</a></p>
         </div>
         <p className="footer-copyright">Copyright 2026 부키부키. All Rights Reserved.</p>
       </div>

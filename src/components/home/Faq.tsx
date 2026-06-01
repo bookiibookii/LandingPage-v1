@@ -73,7 +73,7 @@ export default function Faq() {
                 <div className="faq-q" onClick={() => toggle(i)}>
                   <span className="qmark">Q</span>
                   <span className="faq-q-text">{item.q}</span>
-                  <span className="faq-plus">+</span>
+                  <span className="faq-plus" />
                 </div>
                 <div
                   className="faq-a"

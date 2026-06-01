@@ -101,7 +101,7 @@ export default function Privacy() {
             <li>처리 정지 요청</li>
           </ul>
           <p>
-            권리 행사는 앱 내 설정 메뉴 또는 <a href="mailto:bookkiibookkii@gmail.com" style={{ color: 'var(--main)' }}>bookkiibookkii@gmail.com</a>으로 요청하실 수 있습니다.
+            권리 행사는 앱 내 설정 메뉴 또는 <a href="mailto:bookiimate@gmail.com" style={{ color: 'var(--main)' }}>bookiimate@gmail.com</a>으로 요청하실 수 있습니다.
           </p>
 
           <h2>제7조 (개인정보 보호책임자)</h2>
@@ -111,7 +111,7 @@ export default function Privacy() {
           <ul>
             <li>성명: (담당자 이름)</li>
             <li>직위: (직위)</li>
-            <li>이메일: bookkiibookkii@gmail.com</li>
+            <li>이메일: bookiimate@gmail.com</li>
           </ul>
 
           <h2>제8조 (쿠키 사용)</h2>
@@ -126,7 +126,7 @@ export default function Privacy() {
 
           <hr className="legal-divider" />
           <p style={{ fontSize: 13, color: 'var(--g600)' }}>
-            개인정보 관련 문의: <a href="mailto:bookkiibookkii@gmail.com" style={{ color: 'var(--main)' }}>bookkiibookkii@gmail.com</a>
+            개인정보 관련 문의: <a href="mailto:bookiimate@gmail.com" style={{ color: 'var(--main)' }}>bookiimate@gmail.com</a>
           </p>
         </div>
       </main>

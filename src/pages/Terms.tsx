@@ -76,7 +76,7 @@ export default function Terms() {
 
           <hr className="legal-divider" />
           <p style={{ fontSize: 13, color: 'var(--g600)' }}>
-            문의사항이 있으시면 <a href="mailto:bookkiibookkii@gmail.com" style={{ color: 'var(--main)' }}>bookkiibookkii@gmail.com</a>으로 연락해 주세요.
+            문의사항이 있으시면 <a href="mailto:bookiimate@gmail.com" style={{ color: 'var(--main)' }}>bookiimate@gmail.com</a>으로 연락해 주세요.
           </p>
         </div>
       </main>
