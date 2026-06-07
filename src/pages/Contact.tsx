@@ -54,7 +54,7 @@ export default function Contact() {
           <hr className="legal-divider" />
           <p className="contact-email">
             이메일로도 문의하실 수 있어요 →{' '}
-            <a href="mailto:bookiimate@gmail.com">bookiimate@gmail.com</a>
+            <a href="mailto:bookkiibookkii@gmail.com">bookkiibookkii@gmail.com</a>
           </p>
         </div>
       </main>
