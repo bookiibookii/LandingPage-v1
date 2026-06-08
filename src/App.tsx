@@ -14,7 +14,7 @@ export default function App() {
         <Route path="/terms" element={<Terms />} />
         <Route path="/privacy" element={<Privacy />} />
         <Route path="/contact" element={<Contact />} />
-        <Route path="/card/:id" element={<CardPreview />} />
+        <Route path="/share/reading-card/:id" element={<CardPreview />} />
         <Route path="/user/:id" element={<UserPreview />} />
       </Routes>
     </BrowserRouter>
