@@ -1,0 +1,10 @@
+[{
+  "relation": ["delegate_permission/common.handle_all_urls"],
+  "target": {
+    "namespace": "android_app",
+    "package_name": "com.bookiibookii.bookiibookii_d",
+    "sha256_cert_fingerprints": [
+      "5D:FE:2B:11:BC:7C:EF:CF:72:62:5C:58:6C:17:AE:C3:EE:A0:FB:09:A3:64:04:47:78:13:E9:E9:93:2D:17:D2"
+    ]
+  }
+}]
