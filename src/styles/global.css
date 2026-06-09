@@ -451,7 +451,7 @@ section { position: relative; }
 }
 
 /* =========================================================
-   CARD PREVIEW PAGE (/card/:id)  —  cp-* namespace
+   CARD PREVIEW PAGE (/share/reading-card/:id)  —  cp-* namespace
    ========================================================= */
 .cp-root {
   min-height: 100vh;
@@ -462,12 +462,13 @@ section { position: relative; }
   background: #fff5ee;
 }
 
-/* Header */
+/* Header — 중앙 정렬 */
 .cp-header {
   background: var(--white);
   padding: 14px 20px;
   display: flex;
   align-items: center;
+  justify-content: center;
 }
 .cp-logo {
   font: 800 15px/1 var(--font);
@@ -476,7 +477,7 @@ section { position: relative; }
   text-transform: uppercase;
 }
 
-/* Main — warm bg with faint text pattern */
+/* Main — 따뜻한 살구 배경 + 패턴 */
 .cp-main {
   flex: 1;
   position: relative;
@@ -490,10 +491,7 @@ section { position: relative; }
 .cp-main::before {
   content: 'BOOKIIBOOKII BOOKIIBOOKII BOOKIIBOOKII BOOKIIBOOKII BOOKIIBOOKII BOOKIIBOOKII BOOKIIBOOKII BOOKIIBOOKII BOOKIIBOOKII BOOKIIBOOKII BOOKIIBOOKII BOOKIIBOOKII BOOKIIBOOKII BOOKIIBOOKII BOOKIIBOOKII BOOKIIBOOKII BOOKIIBOOKII BOOKIIBOOKII BOOKIIBOOKII BOOKIIBOOKII BOOKIIBOOKII BOOKIIBOOKII BOOKIIBOOKII BOOKIIBOOKII BOOKIIBOOKII BOOKIIBOOKII BOOKIIBOOKII BOOKIIBOOKII BOOKIIBOOKII BOOKIIBOOKII BOOKIIBOOKII BOOKIIBOOKII BOOKIIBOOKII BOOKIIBOOKII BOOKIIBOOKII BOOKIIBOOKII BOOKIIBOOKII BOOKIIBOOKII BOOKIIBOOKII BOOKIIBOOKII BOOKIIBOOKII BOOKIIBOOKII BOOKIIBOOKII BOOKIIBOOKII BOOKIIBOOKII BOOKIIBOOKII BOOKIIBOOKII BOOKIIBOOKII BOOKIIBOOKII BOOKIIBOOKII';
   position: absolute;
-  top: -30%;
-  left: -20%;
-  right: -20%;
-  bottom: -30%;
+  top: -30%; left: -20%; right: -20%; bottom: -30%;
   font: 700 15px/3 "Pretendard Variable", Pretendard, sans-serif;
   letter-spacing: 0.12em;
   color: var(--main);
@@ -505,32 +503,23 @@ section { position: relative; }
   transform: rotate(-15deg);
 }
 
-/* Loading / Error states */
+/* Loading / Error */
 .cp-state {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 12px;
-  padding: 80px 0;
-  text-align: center;
-  color: var(--g500);
-  font: 400 14px/1.4 var(--font);
+  display: flex; flex-direction: column; align-items: center;
+  justify-content: center; gap: 12px; padding: 80px 0;
+  text-align: center; color: var(--g500); font: 400 14px/1.4 var(--font);
 }
 .cp-spinner {
-  width: 32px;
-  height: 32px;
-  border: 3px solid var(--g200);
-  border-top-color: var(--main);
-  border-radius: 50%;
-  animation: cp-spin 0.7s linear infinite;
+  width: 32px; height: 32px;
+  border: 3px solid var(--g200); border-top-color: var(--main);
+  border-radius: 50%; animation: cp-spin 0.7s linear infinite;
 }
 @keyframes cp-spin { to { transform: rotate(360deg); } }
 .cp-state-icon { font-size: 44px; line-height: 1; }
 .cp-state-title { font: 600 17px/1.4 var(--font); color: var(--g900); margin: 0; }
 .cp-state-desc { font: 400 14px/1.5 var(--font); color: var(--g500); margin: 0; }
 
-/* Card component (captured by html2canvas) */
+/* 카드 공통 래퍼 */
 .cp-card {
   position: relative;
   z-index: 1;
@@ -539,11 +528,20 @@ section { position: relative; }
   box-shadow: 0 8px 32px rgba(16,15,14,0.13);
   overflow: hidden;
 }
-.cp-card-inner {
-  padding: 24px 20px 20px;
+
+/* 코멘트 텍스트 (이미지·인용구 공용) */
+.cp-card-comment {
+  font: 400 16px/1.75 var(--font);
+  color: var(--g900);
+  margin: 0;
+  word-break: keep-all;
+  letter-spacing: -0.01em;
 }
 
-/* Book title pill */
+/* ── 이미지 카드 ───────────────────── */
+.cp-card-inner {
+  padding: 20px 20px 16px;
+}
 .cp-pill {
   display: inline-block;
   background: rgba(255, 118, 24, 0.15);
@@ -551,82 +549,113 @@ section { position: relative; }
   font: 600 13px/1 var(--font);
   padding: 7px 14px;
   border-radius: var(--r-pill);
-  margin-bottom: 18px;
+  margin-bottom: 14px;
   max-width: 100%;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
-
-/* Quote text */
-.cp-quote {
-  font: 500 18px/1.8 var(--font);
-  color: var(--g900);
-  margin: 0;
-  word-break: keep-all;
-  letter-spacing: -0.01em;
-}
-
-/* Photo area */
-.cp-photo-wrap {
-  position: relative;
-  margin-top: 20px;
-}
+.cp-photo-wrap { position: relative; }
 .cp-photo {
-  width: 100%;
-  display: block;
-  max-height: 260px;
-  object-fit: cover;
+  width: 100%; display: block;
+  max-height: 300px; object-fit: cover;
 }
-
-/* Bottom bar — on top of photo (white text) */
-.cp-bar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+.cp-photo-placeholder {
+  width: 100%; height: 220px;
+  background: var(--g100);
 }
-.cp-bar--overlay {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  padding: 28px 16px 14px;
+.cp-photo-bar {
+  position: absolute; bottom: 0; left: 0; right: 0;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 36px 16px 16px;
   background: linear-gradient(to top, rgba(0,0,0,0.52) 0%, transparent 100%);
 }
-.cp-bar--plain {
-  padding: 14px 20px 20px;
-}
-
 .cp-by {
   font: 600 13px/1 var(--font);
   color: var(--white);
   letter-spacing: 0.01em;
 }
-.cp-by--dark { color: var(--g500); }
-
-.cp-brand {
-  font: 800 10px/1 var(--font);
-  letter-spacing: 0.08em;
-  color: var(--white);
-  text-transform: uppercase;
+.cp-b-icon {
+  width: 28px; height: 28px;
+  object-fit: contain;
+  filter: brightness(0) invert(1);
+  opacity: 0.9;
 }
-.cp-brand--orange { color: var(--main); }
 
-/* Footer buttons */
-.cp-footer {
-  background: var(--white);
-  padding: 16px 20px 28px;
+/* ── 인용구 카드 ───────────────────── */
+.cp-qt-top {
+  padding: 22px 20px 26px;
+  background: linear-gradient(155deg, #FF7618 0%, #FFA040 100%);
   display: flex;
   flex-direction: column;
+  gap: 10px;
+}
+.cp-qt-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border: 1.5px solid rgba(255, 255, 255, 0.7);
+  border-radius: var(--r-pill);
+  padding: 6px 12px;
+  align-self: flex-start;
+  max-width: 100%;
+  overflow: hidden;
+  background: rgba(255,255,255,0.1);
+}
+.cp-qt-b-icon {
+  width: 16px; height: 16px;
+  object-fit: contain;
+  filter: brightness(0) invert(1);
+  flex-shrink: 0;
+}
+.cp-qt-pill-text {
+  font: 600 12px/1 var(--font);
+  color: var(--white);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.cp-qt-deco {
+  font: 700 52px/0.8 Georgia, serif;
+  color: rgba(255, 255, 255, 0.3);
+  margin: 4px 0 -4px;
+}
+.cp-qt-text {
+  font: 600 22px/1.55 var(--font);
+  color: var(--white);
+  margin: 0;
+  word-break: keep-all;
+  letter-spacing: -0.02em;
+}
+.cp-qt-bottom {
+  padding: 20px 20px 22px;
+  background: var(--white);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.cp-qt-by {
+  font: 500 13px/1 var(--font);
+  color: var(--g500);
+  text-align: right;
+  margin: 0;
+}
+
+/* Footer — 가로 배치 */
+.cp-footer {
+  background: var(--white);
+  padding: 12px 20px 32px;
+  display: flex;
+  flex-direction: row;
   gap: 8px;
 }
 .cp-btn {
+  flex: 1;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 100%;
-  padding: 15px 20px;
-  border-radius: 12px;
+  padding: 15px 12px;
+  border-radius: 14px;
   font: 600 15px/1 var(--font);
   cursor: pointer;
   transition: opacity 0.15s;
@@ -639,11 +668,11 @@ section { position: relative; }
 }
 .cp-btn--outline:hover { opacity: 0.7; }
 .cp-btn--solid {
-  background: var(--black);
+  background: var(--main);
   color: var(--white);
   border: none;
 }
-.cp-btn--solid:hover { opacity: 0.8; }
+.cp-btn--solid:hover { opacity: 0.85; }
 .cp-btn--solid:disabled { opacity: 0.4; cursor: not-allowed; }
 
 /* =========================================================

@@ -1,16 +1,19 @@
 import { useEffect, useRef, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import html2canvas from 'html2canvas'
+import symbolImg from '../../assets/symbol-default.png'
 
-// TODO: 실제 API 응답 스펙 확정 후 타입 업데이트
+// TODO: API 스펙 확정 후 타입 업데이트
 interface CardData {
+  type: 'photo' | 'quote'
   bookTitle: string
-  quote: string
-  photoUrl?: string
+  comment?: string   // 코멘트 (작성자 감상)
+  quote?: string     // 인용구 카드 전용
+  photoUrl?: string  // 이미지 카드 전용
   nickname: string
 }
 
-// TODO: API 엔드포인트 확정 후 mock → 실제 fetch로 교체
+// TODO: API 엔드포인트 확정 후 교체
 // GET https://bookiibookii.gyeonseo.com/api/cards/{id}/public
 async function fetchCard(id: string): Promise<CardData> {
   const res = await fetch(`https://bookiibookii.gyeonseo.com/api/cards/${id}/public`)
@@ -18,13 +21,61 @@ async function fetchCard(id: string): Promise<CardData> {
   return res.json()
 }
 
+// TODO: API 확정 전 임시 — photo 타입 mock
 const MOCK: CardData = {
+  type: 'photo',
   bookTitle: '나는 당신을 편애합니다',
-  quote: '책을 쓰지 않고 한 우물만 팠다면, 나는 그들이 원하는 자리에 앉아 행복했을까. 나는 오히려 우물을 나와서 많이 느낀다. 세상의 다양성을, 내가 보고 느낄 수 있는 것들의 가치를.',
+  comment: '책을 쓰지 않고 한 우물만 팠다면, 나는 그들이 원하는 자리에 앉아 행복했을까. 나는 오히려 우물을 나와서 많이 느낀다. 세상의 다양성을, 내가 보고 느낄 수 있는 것들의 가치를.',
   photoUrl: undefined,
   nickname: 'foryxxng',
 }
 
+// ── 이미지 독서카드 ──────────────────────────────────────────
+function PhotoCard({ card, cardRef }: { card: CardData; cardRef: React.RefObject<HTMLDivElement> }) {
+  return (
+    <div className="cp-card" ref={cardRef}>
+      <div className="cp-card-inner">
+        <span className="cp-pill">{card.bookTitle}</span>
+        {card.comment && <p className="cp-card-comment">{card.comment}</p>}
+      </div>
+      <div className="cp-photo-wrap">
+        {card.photoUrl ? (
+          <img className="cp-photo" src={card.photoUrl} alt="" crossOrigin="anonymous" />
+        ) : (
+          <div className="cp-photo-placeholder" />
+        )}
+        <div className="cp-photo-bar">
+          <span className="cp-by">by. {card.nickname}</span>
+          <img className="cp-b-icon" src={symbolImg} alt="" />
+        </div>
+      </div>
+    </div>
+  )
+}
+
+// ── 인용구 독서카드 ──────────────────────────────────────────
+function QuoteCard({ card, cardRef }: { card: CardData; cardRef: React.RefObject<HTMLDivElement> }) {
+  return (
+    <div className="cp-card" ref={cardRef}>
+      {/* 주황 그라디언트 섹션 */}
+      <div className="cp-qt-top">
+        <div className="cp-qt-pill">
+          <img className="cp-qt-b-icon" src={symbolImg} alt="" />
+          <span className="cp-qt-pill-text">{card.bookTitle}</span>
+        </div>
+        <div className="cp-qt-deco">"</div>
+        <p className="cp-qt-text">{card.quote}</p>
+      </div>
+      {/* 흰색 하단 섹션 */}
+      <div className="cp-qt-bottom">
+        {card.comment && <p className="cp-card-comment">{card.comment}</p>}
+        <span className="cp-qt-by">by. {card.nickname}</span>
+      </div>
+    </div>
+  )
+}
+
+// ── 메인 컴포넌트 ─────────────────────────────────────────────
 export default function CardPreview() {
   const { id } = useParams<{ id: string }>()
   const [card, setCard] = useState<CardData | null>(null)
@@ -37,7 +88,6 @@ export default function CardPreview() {
     fetchCard(id)
       .then(data => { setCard(data); setStatus('ok') })
       .catch(() => {
-        // TODO: API 확정 전 임시 — 실패 시 mock 데이터로 fallback
         setCard(MOCK)
         setStatus('ok')
       })
@@ -58,7 +108,7 @@ export default function CardPreview() {
       link.href = canvas.toDataURL('image/png')
       link.click()
     } catch {
-      // silent fail — 저장 실패 시 그냥 무시
+      // silent fail
     } finally {
       setSaving(false)
     }
@@ -66,21 +116,17 @@ export default function CardPreview() {
 
   return (
     <div className="cp-root">
-      {/* 상단 헤더 */}
       <header className="cp-header">
         <span className="cp-logo">BOOKIIBOOKII</span>
       </header>
 
-      {/* 메인 영역 */}
       <main className="cp-main">
-
         {status === 'loading' && (
           <div className="cp-state">
             <div className="cp-spinner" />
             <p>독서카드를 불러오는 중...</p>
           </div>
         )}
-
         {status === 'error' && (
           <div className="cp-state">
             <span className="cp-state-icon">📚</span>
@@ -88,43 +134,13 @@ export default function CardPreview() {
             <p className="cp-state-desc">삭제되었거나 존재하지 않는 독서카드예요.</p>
           </div>
         )}
-
         {status === 'ok' && card && (
-          <div className="cp-card" ref={cardRef}>
-            <div className="cp-card-inner">
-              {/* 책 제목 pill 태그 */}
-              <span className="cp-pill">{card.bookTitle}</span>
-
-              {/* 인용 문장 */}
-              <p className="cp-quote">{card.quote}</p>
-            </div>
-
-            {/* 사진 + 하단 바 (사진 있을 때) */}
-            {card.photoUrl ? (
-              <div className="cp-photo-wrap">
-                <img
-                  className="cp-photo"
-                  src={card.photoUrl}
-                  alt="독서카드 이미지"
-                  crossOrigin="anonymous"
-                />
-                <div className="cp-bar cp-bar--overlay">
-                  <span className="cp-by">by. {card.nickname}</span>
-                  <span className="cp-brand">BOOKIIBOOKII</span>
-                </div>
-              </div>
-            ) : (
-              /* 사진 없을 때 하단 바 */
-              <div className="cp-bar cp-bar--plain">
-                <span className="cp-by cp-by--dark">by. {card.nickname}</span>
-                <span className="cp-brand cp-brand--orange">BOOKIIBOOKII</span>
-              </div>
-            )}
-          </div>
+          card.type === 'quote'
+            ? <QuoteCard card={card} cardRef={cardRef} />
+            : <PhotoCard card={card} cardRef={cardRef} />
         )}
       </main>
 
-      {/* 하단 버튼 */}
       <footer className="cp-footer">
         {/* TODO: 실제 Play Store URL 확정 후 교체 */}
         <a
