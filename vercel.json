@@ -11,8 +11,5 @@
       ]
     }
   ],
-  "rewrites": [
-    { "source": "/share/reading-card/:id", "destination": "/api/share/reading-card/:id" },
-    { "source": "/(.*)", "destination": "/index.html" }
-  ]
+  "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }]
 }
