@@ -1,11 +1,25 @@
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
+
+const SCREENS = [
+  { src: '/assets/hero-explore.png', alt: '탐색 화면' },
+  { src: '/assets/hero-mypage.png', alt: '마이페이지 화면' },
+  { src: '/assets/hero-card.png', alt: '독서카드 화면' },
+]
 
 export default function Hero() {
   const sectionRef = useRef<HTMLElement>(null)
+  const [active, setActive] = useState(0)
 
   useEffect(() => {
     const reveals = sectionRef.current?.querySelectorAll('.reveal')
     reveals?.forEach(el => el.classList.add('visible'))
+  }, [])
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setActive(prev => (prev + 1) % SCREENS.length)
+    }, 3500)
+    return () => clearInterval(timer)
   }, [])
 
   const scrollTo = (id: string) => {
@@ -54,17 +68,41 @@ export default function Hero() {
           <div className="phones reveal d5">
             <div className="phone phone-side phone-left" aria-hidden="true">
               <div className="phone-inner">
-                <img src="/assets/phone-left.png" alt="서재 화면" className="screen-img" draggable={false} />
+                {SCREENS.map((screen, i) => (
+                  <img
+                    key={screen.src}
+                    src={screen.src}
+                    alt={screen.alt}
+                    className={`screen-img ${i === (active + 1) % SCREENS.length ? 'active' : ''}`}
+                    draggable={false}
+                  />
+                ))}
               </div>
             </div>
             <div className="phone phone-side phone-right" aria-hidden="true">
               <div className="phone-inner">
-                <img src="/assets/phone-right.png" alt="추천 화면" className="screen-img" draggable={false} />
+                {SCREENS.map((screen, i) => (
+                  <img
+                    key={screen.src}
+                    src={screen.src}
+                    alt={screen.alt}
+                    className={`screen-img ${i === (active + 2) % SCREENS.length ? 'active' : ''}`}
+                    draggable={false}
+                  />
+                ))}
               </div>
             </div>
             <div className="phone phone-main">
               <div className="phone-inner">
-                <img src="/assets/phone-center.png" alt="홈 화면" className="screen-img" draggable={false} />
+                {SCREENS.map((screen, i) => (
+                  <img
+                    key={screen.src}
+                    src={screen.src}
+                    alt={screen.alt}
+                    className={`screen-img ${i === active ? 'active' : ''}`}
+                    draggable={false}
+                  />
+                ))}
               </div>
             </div>
           </div>

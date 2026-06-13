@@ -194,7 +194,8 @@ section { position: relative; }
 .phone-left { left: 0; transform: rotate(-4deg); }
 .phone-right { right: 0; transform: rotate(4deg); }
 .phones:hover .phone-main { transform: translateY(-6px); }
-.screen-img { width: 100%; height: 100%; object-fit: cover; object-position: top; display: block; border-radius: 30px; }
+.screen-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: top; display: block; border-radius: 30px; opacity: 0; transition: opacity 0.9s ease; }
+.screen-img.active { opacity: 1; }
 
 /* =========================================================
    WHY
