@@ -25,8 +25,8 @@ export default function Nav() {
           <img className="wordmark" src="/assets/wordmark-bookiibookii.png" alt="BOOKIIBOOKII" />
         </a>
         <div className="nav-links">
-          <a href="#why">서비스 소개</a>
-          <a href="#features">주요 기능</a>
+          <a href="#persona">서비스 소개</a>
+          <a href="#solution">주요 기능</a>
           <a href="#demo">미리보기</a>
           <a href="#faq">FAQ</a>
         </div>
