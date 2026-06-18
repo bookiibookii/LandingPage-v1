@@ -43,13 +43,10 @@ export default function Hero() {
                   <rect x="5" y="2" width="14" height="20" rx="2" />
                   <path d="M12 18h.01" />
                 </svg>
-                지금 다운로드
-              </button>
-              <button className="btn btn-secondary" onClick={() => scrollTo('features')}>
-                기능 살펴보기 →
+                지금 교환독서 시작하기
               </button>
             </div>
-            <div className="hero-stats reveal d5">
+            {/* <div className="hero-stats reveal d5">
               <div>
                 <div className="stat-num">1,000+</div>
                 <div className="stat-label">함께 읽고 있는 사람</div>
@@ -62,7 +59,7 @@ export default function Hero() {
                 <div className="stat-num">120</div>
                 <div className="stat-label">교환된 책</div>
               </div>
-            </div>
+            </div> */}
           </div>
 
           <div className="phones reveal d5">

@@ -69,6 +69,10 @@ export default function Faq() {
             </div>
           ))}
         </div>
+        <div className="faq-contact reveal">
+          더 궁금한 점이 있으신가요?&nbsp;
+          <a href="/contact">문의하기</a>
+        </div>
       </div>
     </section>
   )
