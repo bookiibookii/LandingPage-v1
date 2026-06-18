@@ -6,7 +6,8 @@ import Why from "../components/home/Why";
 import Features from "../components/home/Features";
 import Solution from "../components/home/Solution";
 import Demo from "../components/home/Demo";
-import Download from "../components/home/Download";
+// import Download from "../components/home/Download";
+import Preorder from "../components/home/Preorder";
 import Faq from "../components/home/Faq";
 
 export default function Home() {
@@ -20,7 +21,8 @@ export default function Home() {
       <Solution />
       <Demo />
       <Faq />
-      <Download />
+      {/* <Download /> */}
+      <Preorder />
       <Footer />
     </>
   );

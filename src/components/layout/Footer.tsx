@@ -20,9 +20,7 @@ export default function Footer() {
             <p>사업자등록번호 &nbsp;&nbsp; 000-00-00000</p>
           </div> */}
           <div className="footer-team">
-            <div className="footer-team-title">
-              Team <b>부키메이트 BOOKIIMATE</b>
-            </div>
+            <div className="footer-team-title">부키메이트 BOOKIIMATE</div>
             <div className="footer-role-group">
               <span className="footer-role-label">PM</span>
               <div className="footer-members-inline">
@@ -115,19 +113,19 @@ export default function Footer() {
                 </a>
                 <a
                   className="footer-member"
-                  href="https://www.instagram.com/sjinssun/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  인석진
-                </a>
-                <a
-                  className="footer-member"
                   href="https://www.instagram.com/macboy_5/"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
                   박성진
+                </a>
+                <a
+                  className="footer-member"
+                  href="https://www.instagram.com/sjinssun/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  인석진
                 </a>
                 <a
                   className="footer-member"
