@@ -85,7 +85,7 @@ function RepBookHeader() {
 // ── 프로필 아바타 (squircle via SVG clipPath — html2canvas 호환) ──
 const SQUIRCLE_PATH = 'M 0 46 C 0 8.12 8.12 0 46 0 C 83.88 0 92 8.12 92 46 C 92 83.88 83.88 92 46 92 C 8.12 92 0 83.88 0 46 Z'
 
-function ProfileAvatar({ url, nickname }: { url?: string; nickname: string }) {
+function ProfileAvatar({ url }: { url?: string }) {
   const img = resolveImg(url)
   return (
     <svg
@@ -283,7 +283,7 @@ export default function UserPreview() {
 
         {/* 프로필: 아바타 + 닉네임 (gap 8dp) */}
         <div className="up-profile">
-          <ProfileAvatar url={profile.profileImageUrl} nickname={profile.nickname} />
+          <ProfileAvatar url={profile.profileImageUrl} />
           <h1 className="up-nickname">{profile.nickname}</h1>
         </div>
 
