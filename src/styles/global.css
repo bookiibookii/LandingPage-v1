@@ -552,45 +552,50 @@ section { position: relative; }
 /* =========================================================
    CARD PREVIEW PAGE (/share/reading-card/:id)  —  cp-* namespace
    ========================================================= */
+.cp-page-outer {
+  min-height: 100vh;
+  background: var(--g100);
+}
 .cp-root {
   min-height: 100vh;
   max-width: 430px;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
-  background: #fff5ee;
+  background: #ffffff;
 }
 
 /* Header — 중앙 정렬 */
 .cp-header {
   background: var(--white);
-  padding: 14px 20px;
+  height: 68px;
+  padding: 0 20px;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 .cp-logo {
-  font: 800 15px/1 var(--font);
+  font: 800 22px/1 var(--font);
   letter-spacing: 0.06em;
   color: var(--main);
   text-transform: uppercase;
 }
 
-/* Main — 따뜻한 살구 배경 + 패턴 */
+/* Main */
 .cp-main {
   flex: 1;
   position: relative;
-  padding: 28px 20px 24px;
+  padding: 32px 44px 56px;
   display: flex;
   flex-direction: column;
   align-items: stretch;
   justify-content: center;
-  overflow: hidden;
+  background: #ffffff;
 }
-.cp-main::before {
-  content: 'BOOKIIBOOKII BOOKIIBOOKII BOOKIIBOOKII BOOKIIBOOKII BOOKIIBOOKII BOOKIIBOOKII BOOKIIBOOKII BOOKIIBOOKII BOOKIIBOOKII BOOKIIBOOKII BOOKIIBOOKII BOOKIIBOOKII BOOKIIBOOKII BOOKIIBOOKII BOOKIIBOOKII BOOKIIBOOKII BOOKIIBOOKII BOOKIIBOOKII BOOKIIBOOKII BOOKIIBOOKII BOOKIIBOOKII BOOKIIBOOKII BOOKIIBOOKII BOOKIIBOOKII BOOKIIBOOKII BOOKIIBOOKII BOOKIIBOOKII BOOKIIBOOKII BOOKIIBOOKII BOOKIIBOOKII BOOKIIBOOKII BOOKIIBOOKII BOOKIIBOOKII BOOKIIBOOKII BOOKIIBOOKII BOOKIIBOOKII BOOKIIBOOKII BOOKIIBOOKII BOOKIIBOOKII BOOKIIBOOKII BOOKIIBOOKII BOOKIIBOOKII BOOKIIBOOKII BOOKIIBOOKII BOOKIIBOOKII BOOKIIBOOKII BOOKIIBOOKII BOOKIIBOOKII BOOKIIBOOKII BOOKIIBOOKII';
+.cp-main-bg {
+  display: none;
   position: absolute;
-  top: -30%; left: -20%; right: -20%; bottom: -30%;
+  inset: -50% -30%;
   font: 700 15px/3 "Pretendard Variable", Pretendard, sans-serif;
   letter-spacing: 0.12em;
   color: var(--main);
@@ -618,124 +623,250 @@ section { position: relative; }
 .cp-state-title { font: 600 17px/1.4 var(--font); color: var(--g900); margin: 0; }
 .cp-state-desc { font: 400 14px/1.5 var(--font); color: var(--g500); margin: 0; }
 
+
+/* 카드 그림자 wrapper — overflow:hidden 없이 shadow 렌더링 (html2canvas 호환) */
+.cp-card-wrap {
+  position: relative;
+  width: 320px;
+  margin: 0 auto;
+  border-radius: 20px;
+  box-shadow: 0 0 0 1px rgba(0,0,0,0.06), 0 4px 16px rgba(0,0,0,0.12), 0 12px 40px rgba(0,0,0,0.18);
+}
 /* 카드 공통 래퍼 */
 .cp-card {
   position: relative;
-  z-index: 1;
-  background: var(--white);
+  width: 320px;
+  height: 520px;
   border-radius: 20px;
-  box-shadow: 0 8px 32px rgba(16,15,14,0.13);
   overflow: hidden;
+  background: var(--white);
+}
+/* flex column 레이아웃 (SPLIT, QUOTE 카드) */
+.cp-card--col {
+  display: flex;
+  flex-direction: column;
 }
 
-/* 코멘트 텍스트 (이미지·인용구 공용) */
-.cp-card-comment {
+/* ── BookTitleChip (책 제목 칩) ─────────────────────── */
+.cp-chip {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #FF7618;
+  border-radius: 8px;
+  padding: 4px 8px;
+  max-width: 100%;
+  overflow: hidden;
+}
+.cp-chip--pale {
+  background: #FFEADB;
+  border: none;
+}
+.cp-chip--white-stroke {
+  background: transparent;
+  border: 1px solid white;
+}
+.cp-chip-icon {
+  width: 16px;
+  height: 16px;
+  object-fit: contain;
+  flex-shrink: 0;
+  display: block;
+}
+.cp-chip-text {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1;
+  font-family: "Pretendard Variable", Pretendard, -apple-system, sans-serif;
+  color: #ffffff;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  min-width: 0;
+  flex-shrink: 1;
+}
+.cp-chip-text--pale {
+  color: #FF7618;
+}
+
+/* ── 사진 카드 SPLIT (v1) ──────────────────────────── */
+.cp-split-top {
+  position: relative;
+  flex: 336;
+  background: var(--g200);
+  min-height: 0;
+  /* overflow:hidden 제거 — html2canvas가 absolute 자식을 clip함. 이미지는 .cp-card overflow:hidden으로 클립됨 */
+}
+.cp-split-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.cp-split-img-placeholder {
+  width: 100%;
+  height: 100%;
+  background: var(--g200);
+}
+.cp-split-chip-wrap {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  max-width: calc(100% - 40px);
+}
+.cp-split-bottom {
+  flex: 128;
+  position: relative;
+  background: white;
+  min-height: 0;
+}
+.cp-split-memo {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  right: 20px;
   font: 400 16px/1.75 var(--font);
-  color: var(--g900);
+  color: var(--g800);
+  margin: 0;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  letter-spacing: -0.01em;
+}
+.cp-split-by {
+  position: absolute;
+  bottom: 16px;
+  right: 20px;
+  font: 400 14px/1 var(--font);
+  color: var(--g400);
+  margin: 0;
+}
+
+/* ── 사진 카드 OVERLAY (v2) ──────────────────────── */
+.cp-overlay-bg {
+  position: absolute;
+  inset: 0;
+  background: var(--g200);
+  overflow: hidden;
+}
+.cp-overlay-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.cp-overlay-img-placeholder {
+  width: 100%;
+  height: 100%;
+  background: var(--g300);
+}
+.cp-overlay-gradient {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 55%;
+  background: linear-gradient(
+    to bottom,
+    rgba(255,255,255,1) 0%,
+    rgba(255,255,255,1) 11%,
+    rgba(255,255,255,0.9) 41%,
+    rgba(255,255,255,0) 100%
+  );
+  pointer-events: none;
+}
+.cp-overlay-chip-wrap {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  max-width: calc(100% - 40px);
+}
+.cp-overlay-memo {
+  position: absolute;
+  top: 56px;
+  left: 20px;
+  right: 20px;
+  font: 400 16px/1.75 var(--font);
+  color: var(--g800);
+  margin: 0;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  letter-spacing: -0.01em;
+}
+.cp-overlay-by {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  font: 400 14px/1 var(--font);
+  color: white;
+  margin: 0;
+}
+.cp-overlay-symbol {
+  position: absolute;
+  bottom: 18px;
+  right: 20px;
+  width: 20px;
+  height: 20px;
+  opacity: 0.85;
+}
+.cp-overlay-symbol .cp-chip-icon {
+  width: 20px;
+  height: 20px;
+}
+
+/* ── 인용구 카드 ──────────────────────────────────── */
+.cp-quote-top {
+  flex: 1;
+  overflow: hidden;
+  min-height: 0;
+}
+.cp-quote-top--v1 {
+  background: linear-gradient(135deg, #ffffff 0%, #FFC9A4 100%);
+}
+.cp-quote-top--v2 {
+  background: linear-gradient(135deg, #FF4E18 0%, #FF7618 50%, #FFC9A4 100%);
+}
+.cp-quote-inner {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.cp-quote-spacer { height: 4px; }
+.cp-quote-icon {
+  font: 700 42px/0.85 Georgia, serif;
+  color: #FFC9A4;
+  margin: 0;
+  display: block;
+}
+.cp-quote-text {
+  font: 700 20px/1.55 Georgia, "Nanum Myeongjo", serif;
   margin: 0;
   word-break: keep-all;
   letter-spacing: -0.01em;
 }
-
-/* ── 이미지 카드 ───────────────────── */
-.cp-card-inner {
-  padding: 20px 20px 16px;
-}
-.cp-pill {
-  display: inline-block;
-  background: rgba(255, 118, 24, 0.15);
-  color: var(--main);
-  font: 600 13px/1 var(--font);
-  padding: 7px 14px;
-  border-radius: var(--r-pill);
-  margin-bottom: 14px;
-  max-width: 100%;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-.cp-photo-wrap { position: relative; }
-.cp-photo {
-  width: 100%; display: block;
-  max-height: 300px; object-fit: cover;
-}
-.cp-photo-placeholder {
-  width: 100%; height: 220px;
-  background: var(--g100);
-}
-.cp-photo-bar {
-  position: absolute; bottom: 0; left: 0; right: 0;
-  display: flex; align-items: center; justify-content: space-between;
-  padding: 36px 16px 16px;
-  background: linear-gradient(to top, rgba(0,0,0,0.52) 0%, transparent 100%);
-}
-.cp-by {
-  font: 600 13px/1 var(--font);
-  color: var(--white);
-  letter-spacing: 0.01em;
-}
-.cp-b-icon {
-  width: 28px; height: 28px;
-  object-fit: contain;
-  filter: brightness(0) invert(1);
-  opacity: 0.9;
-}
-
-/* ── 인용구 카드 ───────────────────── */
-.cp-qt-top {
-  padding: 22px 20px 26px;
-  background: linear-gradient(155deg, #FF7618 0%, #FFA040 100%);
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-.cp-qt-pill {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  border: 1.5px solid rgba(255, 255, 255, 0.7);
-  border-radius: var(--r-pill);
-  padding: 6px 12px;
-  align-self: flex-start;
-  max-width: 100%;
-  overflow: hidden;
-  background: rgba(255,255,255,0.1);
-}
-.cp-qt-b-icon {
-  width: 16px; height: 16px;
-  object-fit: contain;
-  filter: brightness(0) invert(1);
+.cp-quote-text--v1 { color: #FF7618; }
+.cp-quote-text--v2 { color: white; }
+.cp-quote-bottom {
+  background: white;
+  padding: 16px 20px;
   flex-shrink: 0;
-}
-.cp-qt-pill-text {
-  font: 600 12px/1 var(--font);
-  color: var(--white);
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-.cp-qt-deco {
-  font: 700 52px/0.8 Georgia, serif;
-  color: rgba(255, 255, 255, 0.3);
-  margin: 4px 0 -4px;
-}
-.cp-qt-text {
-  font: 600 22px/1.55 var(--font);
-  color: var(--white);
-  margin: 0;
-  word-break: keep-all;
-  letter-spacing: -0.02em;
-}
-.cp-qt-bottom {
-  padding: 20px 20px 22px;
-  background: var(--white);
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 8px;
 }
-.cp-qt-by {
-  font: 500 13px/1 var(--font);
-  color: var(--g500);
+.cp-quote-memo {
+  font: 400 16px/1.75 var(--font);
+  color: var(--g800);
+  margin: 0;
+  letter-spacing: -0.01em;
+}
+.cp-quote-by {
+  font: 400 14px/1 var(--font);
+  color: var(--g400);
   text-align: right;
   margin: 0;
 }
@@ -762,8 +893,8 @@ section { position: relative; }
 }
 .cp-btn--outline {
   background: var(--white);
-  color: var(--black);
-  border: 1.5px solid var(--black);
+  color: var(--g700);
+  border: 1.5px solid var(--g200);
 }
 .cp-btn--outline:hover { opacity: 0.7; }
 .cp-btn--solid {
@@ -775,8 +906,13 @@ section { position: relative; }
 .cp-btn--solid:disabled { opacity: 0.4; cursor: not-allowed; }
 
 /* =========================================================
-   USER PREVIEW PAGE (/user/:id)  —  up-* namespace
+   USER PREVIEW PAGE (/share/profile/:token)  —  up-* namespace
+   앱의 ProfileShareCardContent와 동일한 디자인
    ========================================================= */
+.up-page-outer {
+  min-height: 100vh;
+  background: var(--g100);
+}
 .up-root {
   min-height: 100vh;
   max-width: 430px;
@@ -790,124 +926,174 @@ section { position: relative; }
   flex: 1;
   display: flex;
   flex-direction: column;
+  align-items: stretch;
 }
 
-/* 이미지 저장 캡처 영역 */
+/* 캡처 영역 (이미지 저장 대상) */
 .up-capture {
   display: flex;
   flex-direction: column;
   background: var(--white);
 }
 
-/* 프로필 섹션 */
+/* BOOKIIBOOKII 텍스트 로고 — 앱의 ic_bookii_text(113×12dp) 대응 */
+.up-logo-wrap {
+  display: flex;
+  justify-content: center;
+  padding: 20px 24px 0;
+}
+
+/* 프로필 — 아바타 + 닉네임 (앱: gap 8dp, padding horizontal 24dp) */
 .up-profile {
-  padding: 28px 24px 20px;
+  padding: 16px 24px 0;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 12px;
+  gap: 8px;
 }
 
-.up-brand {
-  font: 800 13px/1 var(--font);
-  letter-spacing: 0.1em;
-  color: var(--main);
-  text-transform: uppercase;
-}
-
-.up-avatar {
-  width: 80px;
-  height: 80px;
-  border-radius: 50%;
-  object-fit: cover;
-  display: block;
-}
-.up-avatar--empty {
-  background: var(--g200);
+/* 아바타: SVG 자체가 squircle 클립 처리 — .up-avatar-img/.up-avatar-placeholder 불필요 */
+.up-capture--dark image {
+  /* 다크모드에서 placeholder SVG 색상은 g 태그 fill로 직접 처리 */
 }
 
 .up-nickname {
-  font: 700 22px/1.2 var(--font);
-  letter-spacing: -0.02em;
-  color: var(--black);
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 1.3;
+  font-family: "Pretendard Variable", Pretendard, -apple-system, sans-serif;
+  letter-spacing: -0.01em;
+  color: var(--g900);
   margin: 0;
-}
-
-.up-bio-card {
-  width: 100%;
-  background: #f6f6f6;
-  border-radius: 16px;
-  padding: 20px 20px 22px;
-  position: relative;
-}
-.up-bio-quote {
-  display: block;
-  font: 700 30px/1 Georgia, serif;
-  color: var(--main);
-  margin-bottom: 6px;
-}
-.up-bio-text {
-  font: 400 16px/1.7 var(--font);
-  color: var(--g600);
-  margin: 0;
-  white-space: pre-line;
-  word-break: keep-all;
   text-align: center;
 }
 
-/* 대표 책 섹션 */
-.up-books {
-  padding: 8px 24px 28px;
+/* 한 줄 소개 박스 — 앱: clip(RoundedCorner 16dp) + background(uiBg=g100) + border(1dp g200) */
+.up-motto-box {
+  margin: 16px 24px 0;
+  border-radius: 16px;
+  background: var(--g100);
+  border: 1px solid var(--g200);
+  padding: 8px 16px 16px;
   display: flex;
   flex-direction: column;
-  gap: 14px;
-}
-
-.up-books-label {
-  display: inline-flex;
   align-items: center;
-  background: var(--black);
-  color: var(--white);
-  font: 600 14px/1 var(--font);
-  padding: 9px 18px;
-  border-radius: 8px;
-  align-self: flex-start;
+  gap: 0;
 }
-
-.up-books-empty {
-  font: 400 14px/1.5 var(--font);
-  color: var(--g400);
+.up-motto-text {
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 1.6;
+  font-family: "Pretendard Variable", Pretendard, -apple-system, sans-serif;
+  color: var(--g600);
   margin: 0;
+  text-align: center;
+  white-space: pre-line;
+  word-break: keep-all;
 }
 
-.up-books-grid {
+/* 나를 대표하는 책 헤더 — ic_repressentative_book SVG (167×24) */
+.up-rep-header-wrap {
   display: flex;
-  flex-direction: column;
-  gap: 6px;
+  justify-content: center;
+  padding: 12px 0 0;
 }
 
-/* 각 행: flex로 균등 분할 — 아이템 수에 따라 3열/4열 자동 대응 */
+/* 구분선 (앱: height 10dp, separatorBg = grey100) */
+.up-separator {
+  height: 10px;
+  background: var(--g100);
+}
+
+/* 책 표지 섹션 (앱: padding start/end 16dp, top 12dp, Arrangement.spacedBy(4dp, CenterHorizontally)) */
 .up-books-row {
   display: flex;
-  gap: 6px;
+  justify-content: center;
+  gap: 4px;
+  padding: 12px 16px 0;
 }
-
 .up-book {
-  flex: 1;
   min-width: 0;
+  flex-shrink: 0;
 }
-
 .up-book-img {
   width: 100%;
-  aspect-ratio: 2 / 3;
+  aspect-ratio: 72 / 104;
   object-fit: cover;
   border-radius: 4px;
   display: block;
+  background: var(--g200);
 }
-
 .up-book-placeholder {
   width: 100%;
-  aspect-ratio: 2 / 3;
+  aspect-ratio: 72 / 104;
   background: var(--g200);
   border-radius: 4px;
+}
+.up-books-empty {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.5;
+  font-family: "Pretendard Variable", Pretendard, -apple-system, sans-serif;
+  color: var(--g400);
+  margin: 16px 24px;
+  text-align: center;
+}
+
+/* 앱으로 열기 배너 (Android only, JS로 조건부 렌더) */
+.up-app-banner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 12px 20px;
+  background: var(--main-pale);
+  border-top: 1px solid var(--main-105);
+}
+.up-app-banner-text {
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 1.4;
+  font-family: "Pretendard Variable", Pretendard, -apple-system, sans-serif;
+  color: var(--g700);
+  flex: 1;
+}
+.up-app-banner-btn {
+  flex-shrink: 0;
+  padding: 8px 16px;
+  background: var(--main);
+  color: var(--white);
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1;
+  font-family: "Pretendard Variable", Pretendard, -apple-system, sans-serif;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: opacity 0.15s;
+}
+.up-app-banner-btn:hover { opacity: 0.85; }
+
+/* ── 프로필 다크모드 (?dark=1) ──────────────────────────────── */
+.up-page-dark .up-root { background: var(--g900); }
+.up-page-dark .up-main { background: var(--g900); }
+
+.up-capture--dark {
+  background: var(--g900);
+}
+.up-capture--dark .up-nickname {
+  color: var(--white);
+}
+.up-capture--dark .up-motto-box {
+  background: var(--g800);
+  border-color: var(--g700);
+}
+.up-capture--dark .up-motto-text {
+  color: var(--g100);
+}
+.up-capture--dark .up-separator {
+  background: var(--g800);
+}
+.up-capture--dark .up-book-placeholder {
+  background: var(--g700);
 }

@@ -15,6 +15,7 @@ export default function App() {
         <Route path="/privacy" element={<Privacy />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/share/reading-card/:id" element={<CardPreview />} />
+        <Route path="/share/profile/:token" element={<UserPreview />} />
         <Route path="/user/:id" element={<UserPreview />} />
       </Routes>
     </BrowserRouter>
