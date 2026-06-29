@@ -1077,6 +1077,12 @@ section { position: relative; }
 /* ── 프로필 다크모드 (?dark=1) ──────────────────────────────── */
 .up-page-dark .up-root { background: var(--g900); }
 .up-page-dark .up-main { background: var(--g900); }
+.up-page-dark .cp-header { background: var(--g900); border-bottom: none; }
+.up-page-dark .cp-logo { color: var(--main); }
+.up-page-dark .cp-footer { background: var(--g900); border-top: none; }
+.up-page-dark .cp-btn--outline { background: var(--g800); color: var(--g100); border-color: var(--g700); }
+.up-page-dark .cp-state-title { color: var(--white); }
+.up-page-dark .cp-state-desc { color: var(--g400); }
 
 .up-capture--dark {
   background: var(--g900);
