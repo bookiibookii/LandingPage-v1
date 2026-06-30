@@ -21,7 +21,7 @@ const BG_PATTERN = Array(300).fill('BOOKIIBOOKII').join(' ')
 
 function resolveImg(url: string | undefined | null): string | undefined {
   if (!url) return undefined
-  return import.meta.env.DEV ? url.replace(S3_HOST, '/s3-image') : url
+  return url.replace(S3_HOST, '/s3-image')
 }
 
 async function fetchCard(token: string): Promise<PublicCardData> {

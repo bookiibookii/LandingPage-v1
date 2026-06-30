@@ -22,7 +22,7 @@ const S3_HOST = 'https://booki-dev-s3.s3.ap-northeast-2.amazonaws.com'
 
 function resolveImg(url: string | undefined | null): string | undefined {
   if (!url) return undefined
-  return import.meta.env.DEV ? url.replace(S3_HOST, '/s3-image') : url
+  return url.replace(S3_HOST, '/s3-image')
 }
 
 async function fetchProfile(token: string): Promise<PublicProfile> {
@@ -114,23 +114,6 @@ function ProfileAvatar({ url }: { url?: string }) {
         </g>
       )}
     </svg>
-  )
-}
-
-// ── 앱으로 열기 배너 ─────────────────────────────────────────
-function OpenInAppBanner({ token }: { token: string }) {
-  const isAndroid = /android/i.test(navigator.userAgent)
-  if (!isAndroid) return null
-  const handleOpenApp = () => {
-    const webUrl = encodeURIComponent(`https://bookiibookii.com/share/profile/${token}`)
-    const intentUrl = `intent://share/profile/${token}#Intent;scheme=https;host=bookiibookii.com;package=com.bookiibookii.bookiibookii;S.browser_fallback_url=${webUrl};end`
-    window.location.href = intentUrl
-  }
-  return (
-    <div className="up-app-banner">
-      <span className="up-app-banner-text">부키부키 앱이 설치되어 있나요?</span>
-      <button className="up-app-banner-btn" onClick={handleOpenApp}>앱으로 열기</button>
-    </div>
   )
 }
 
@@ -375,8 +358,6 @@ export default function UserPreview() {
         )}
         {status === 'ok' && renderCard()}
       </main>
-
-      {token && <OpenInAppBanner token={token} />}
 
       <footer className="cp-footer">
         <a
