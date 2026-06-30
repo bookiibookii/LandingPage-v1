@@ -40,24 +40,11 @@ async function getCardOg(id: string): Promise<{ title: string; description: stri
   }
 }
 
-async function getProfileOg(token: string): Promise<{ title: string; description: string; image: string; pageUrl: string }> {
-  interface ProfileResult { nickname?: string; profileImageUrl?: string; introduction?: string }
-  interface ProfileResponse { isSuccess?: boolean; result?: ProfileResult }
-  let profile: ProfileResult = {}
-  try {
-    const res = await fetchWithTimeout(`https://bookii.gyeonseo.com/api/public/profiles/${token}`)
-    if (res && typeof res === 'object' && (res as ProfileResponse).isSuccess) {
-      profile = (res as ProfileResponse).result ?? {}
-    }
-  } catch { /* 기본값 사용 */ }
-
-  const nickname = profile.nickname ?? 'BOOKIIBOOKII'
+function getProfileOg(token: string): { title: string; description: string; image: string; pageUrl: string } {
   return {
-    title: `${nickname}님의 독서 프로필`,
-    description: profile.introduction?.trim()
-      ? profile.introduction.trim()
-      : `${nickname}님의 독서 프로필을 BOOKIIBOOKII에서 확인해보세요!`,
-    image: profile.profileImageUrl ?? DEFAULT_IMAGE,
+    title: 'BOOKIIBOOKII',
+    description: 'BOOKIIBOOKII에서 공유된 프로필을 확인해보세요!',
+    image: DEFAULT_IMAGE,
     pageUrl: `https://bookiibookii.com/share/profile/${encodeURIComponent(token)}`,
   }
 }
@@ -69,7 +56,7 @@ export default async function middleware(request: Request): Promise<Response> {
   const id = segments[segments.length - 1] ?? ''
 
   const og = isProfile
-    ? await getProfileOg(id)
+    ? getProfileOg(id)
     : await getCardOg(id)
 
   // 빌드된 index.html을 origin에서 가져옴 (Vercel CDN 캐시 히트, 매우 빠름)
