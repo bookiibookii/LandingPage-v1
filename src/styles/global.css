@@ -555,6 +555,7 @@ section { position: relative; }
 .cp-page-outer {
   min-height: 100vh;
   background: var(--g100);
+  overflow-x: hidden;
 }
 .cp-root {
   min-height: 100vh;
@@ -585,7 +586,7 @@ section { position: relative; }
 .cp-main {
   flex: 1;
   position: relative;
-  padding: 32px 44px 56px;
+  padding: 32px 20px 56px;
   display: flex;
   flex-direction: column;
   align-items: stretch;
@@ -628,14 +629,17 @@ section { position: relative; }
 .cp-card-wrap {
   position: relative;
   width: 320px;
+  max-width: 100%;
   margin: 0 auto;
   border-radius: 20px;
+  background: #ffffff;
   box-shadow: 0 0 0 1px rgba(0,0,0,0.06), 0 4px 16px rgba(0,0,0,0.12), 0 12px 40px rgba(0,0,0,0.18);
 }
 /* 카드 공통 래퍼 */
 .cp-card {
   position: relative;
   width: 320px;
+  max-width: 100%;
   height: 520px;
   border-radius: 20px;
   overflow: hidden;
@@ -912,6 +916,7 @@ section { position: relative; }
 .up-page-outer {
   min-height: 100vh;
   background: var(--g100);
+  overflow-x: hidden;
 }
 .up-root {
   min-height: 100vh;
