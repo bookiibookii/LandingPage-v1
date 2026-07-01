@@ -24,6 +24,10 @@ function resolveImg(url: string | undefined | null): string | undefined {
   return url.replace(S3_HOST, '/s3-image')
 }
 
+function stripHyphen(s: string): string {
+  return s.replace(/ *-.*$/, '').trim()
+}
+
 async function fetchCard(token: string): Promise<PublicCardData> {
   const res = await fetch(`${API_BASE}/api/public/reading-cards/${token}`)
   const json = await res.json().catch(() => null)
@@ -158,7 +162,7 @@ export default function CardPreview() {
   useEffect(() => {
     if (!id) { setStatus('error'); return }
     fetchCard(id)
-      .then(data => { setCard(data); setStatus('ok') })
+      .then(data => { setCard({ ...data, bookTitle: stripHyphen(data.bookTitle) }); setStatus('ok') })
       .catch((e: Error) => { setErrorMsg(e.message); setStatus('error') })
   }, [id])
 
