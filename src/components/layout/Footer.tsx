@@ -9,6 +9,7 @@ export default function Footer() {
             <Link to="/privacy">개인정보 처리방침</Link>
             <Link to="/terms">이용약관</Link>
             <Link to="/contact">문의하기</Link>
+            <a href="https://www.instagram.com/bookii_bookii/" target="_blank" rel="noopener noreferrer">인스타그램</a>
           </div>
         </div>
         <div className="footer-body">

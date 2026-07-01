@@ -28,12 +28,12 @@ export default function Nav() {
             alt="BOOKIIBOOKII"
           />
         </a>
-        <div className="nav-links">
+        {/* <div className="nav-links">
           <a href="#why">서비스 소개</a>
           <a href="#features">주요 기능</a>
           <a href="#demo">미리보기</a>
           <a href="#faq">FAQ</a>
-        </div>
+        </div> */}
         <button className="cta-pill" onClick={() => scrollTo("download")}>
           앱 다운로드
         </button>

@@ -14,25 +14,6 @@ export default function Contact() {
 
           <div className="contact-cards">
             <a
-              href="https://forms.gle/eq4XtRZfRjEbc1C76"
-              className="contact-card"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <div className="contact-card-icon google">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                  <path d="M20 4H4C2.9 4 2 4.9 2 6v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2z" fill="#4285F4" />
-                  <path d="M20 4l-8 9-8-9" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" fill="none" />
-                </svg>
-              </div>
-              <div className="contact-card-body">
-                <div className="contact-card-title">문의 양식 작성하기</div>
-                <div className="contact-card-desc">구글 폼으로 문의 내용을 남겨주시면 순서대로 답변드려요.</div>
-              </div>
-              <span className="contact-card-arrow">→</span>
-            </a>
-
-            <a
               href="http://pf.kakao.com/_cIxlxjX"
               className="contact-card"
               target="_blank"
@@ -50,12 +31,6 @@ export default function Contact() {
               <span className="contact-card-arrow">→</span>
             </a>
           </div>
-
-          <hr className="legal-divider" />
-          <p className="contact-email">
-            이메일로도 문의하실 수 있어요 →{' '}
-            <a href="mailto:bookkiibookkii@gmail.com">bookkiibookkii@gmail.com</a>
-          </p>
         </div>
       </main>
       <Footer />
