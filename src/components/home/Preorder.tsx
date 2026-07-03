@@ -31,7 +31,7 @@ export default function Preorder() {
           <span className="accent">되어주세요</span>
         </h2>
         <p className="reveal d2">
-          부키부키 출시 전에 미리 신청하고, 가장 먼저 소식을 받아보세요.
+          지금 바로 구글 플레이스토어에서 부키부키를 만나보세요!
           <br />
         </p>
         <a
