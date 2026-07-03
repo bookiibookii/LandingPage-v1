@@ -14,10 +14,6 @@ export default function Nav() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  const scrollTo = (id: string) => {
-    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
-  };
-
   return (
     <nav className="nav" id="nav" ref={navRef}>
       <div className="wrap">
@@ -34,9 +30,14 @@ export default function Nav() {
           <a href="#demo">미리보기</a>
           <a href="#faq">FAQ</a>
         </div> */}
-        <button className="cta-pill" onClick={() => scrollTo("download")}>
+        <a
+          className="cta-pill"
+          href="https://play.google.com/store/apps/details?id=com.bookiibookii.bookiibookii_d"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           앱 다운로드
-        </button>
+        </a>
       </div>
     </nav>
   );
