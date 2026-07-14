@@ -10,7 +10,7 @@ export default defineConfig({
   server: {
     proxy: {
       '/api': {
-        target: 'https://bookii.gyeonseo.com',
+        target: 'https://bookiibookii.gyeonseo.com',
         changeOrigin: true,
         secure: false,
       },
