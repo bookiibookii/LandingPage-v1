@@ -17,7 +17,7 @@ interface PublicProfile {
   representativeBooks: RepresentativeBook[]
 }
 
-const API_BASE = ''
+const API_BASE = import.meta.env.VITE_API_BASE ?? ''
 const S3_HOST = 'https://booki-dev-s3.s3.ap-northeast-2.amazonaws.com'
 
 function resolveImg(url: string | undefined | null): string | undefined {
