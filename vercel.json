@@ -1,19 +1,8 @@
 {
-  "buildCommand": "npm run build",
-  "outputDirectory": "dist",
-  "installCommand": "npm install",
-  "headers": [
-    {
-      "source": "/.well-known/assetlinks.json",
-      "headers": [
-        { "key": "Content-Type", "value": "application/json" },
-        { "key": "Cache-Control", "value": "public, max-age=3600" }
-      ]
-    }
-  ],
   "rewrites": [
-    { "source": "/api/:path*", "destination": "https://bookii.gyeonseo.com/api/:path*" },
-    { "source": "/s3-image/:path*", "destination": "https://booki-dev-s3.s3.ap-northeast-2.amazonaws.com/:path*" },
-    { "source": "/(.*)", "destination": "/index.html" }
+    {
+      "source": "/api/:path*",
+      "destination": "https://bookiibookii.gyeonseo.com/api/:path*"
+    }
   ]
 }
