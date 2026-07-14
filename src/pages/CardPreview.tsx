@@ -15,7 +15,7 @@ interface PublicCardData {
   shareLayout: 'OVERLAY' | 'SPLIT'
 }
 
-const API_BASE = ''
+const API_BASE = import.meta.env.VITE_API_BASE ?? ''
 const S3_HOST = 'https://booki-dev-s3.s3.ap-northeast-2.amazonaws.com'
 const BG_PATTERN = Array(300).fill('BOOKIIBOOKII').join(' ')
 
