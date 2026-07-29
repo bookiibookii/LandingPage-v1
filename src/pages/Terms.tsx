@@ -468,10 +468,10 @@ export default function Terms() {
               <strong>1단계 (당사자 간 협의)</strong>: 회사 고객센터(카카오톡
               채널 또는{" "}
               <a
-                href="mailto:bookkiibookkii@gmail.com"
+                href="mailto:contact@bookiibookii.com"
                 style={{ color: "var(--main)" }}
               >
-                bookkiibookkii@gmail.com
+                contact@bookiibookii.com
               </a>
               )를 통한 직접 협의
             </li>
@@ -505,10 +505,10 @@ export default function Terms() {
           <p style={{ fontSize: 13, color: "var(--g600)" }}>
             문의사항:{" "}
             <a
-              href="mailto:bookkiibookkii@gmail.com"
+              href="mailto:contact@bookiibookii.com"
               style={{ color: "var(--main)" }}
             >
-              bookkiibookkii@gmail.com
+              contact@bookiibookii.com
             </a>
           </p>
         </div>

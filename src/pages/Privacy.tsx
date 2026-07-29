@@ -513,10 +513,10 @@ export default function Privacy() {
                 <td>이메일 문의</td>
                 <td>
                   <a
-                    href="mailto:bookkiibookkii@gmail.com"
+                    href="mailto:contact@bookiibookii.com"
                     style={{ color: "var(--main)" }}
                   >
-                    bookkiibookkii@gmail.com
+                    contact@bookiibookii.com
                   </a>
                 </td>
               </tr>
@@ -560,10 +560,10 @@ export default function Privacy() {
                 </td>
                 <td>
                   <a
-                    href="mailto:bookkiibookkii@gmail.com"
+                    href="mailto:contact@bookiibookii.com"
                     style={{ color: "var(--main)" }}
                   >
-                    bookkiibookkii@gmail.com
+                    contact@bookiibookii.com
                   </a>
                 </td>
               </tr>
@@ -649,10 +649,10 @@ export default function Privacy() {
           <p style={{ fontSize: 13, color: "var(--g600)" }}>
             개인정보 관련 문의:{" "}
             <a
-              href="mailto:bookkiibookkii@gmail.com"
+              href="mailto:contact@bookiibookii.com"
               style={{ color: "var(--main)" }}
             >
-              bookkiibookkii@gmail.com
+              contact@bookiibookii.com
             </a>
           </p>
         </div>
