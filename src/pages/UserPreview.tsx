@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { useParams, useLocation } from 'react-router-dom'
 import html2canvas from 'html2canvas'
+import { getStoreUrl } from '../lib/store'
 
 interface RepresentativeBook {
   title: string
@@ -18,12 +19,6 @@ interface PublicProfile {
 }
 
 const API_BASE = ''
-const S3_HOST = 'https://booki-dev-s3.s3.ap-northeast-2.amazonaws.com'
-
-function resolveImg(url: string | undefined | null): string | undefined {
-  if (!url) return undefined
-  return url.replace(S3_HOST, '/s3-image')
-}
 
 async function fetchProfile(token: string): Promise<PublicProfile> {
   const res = await fetch(`${API_BASE}/api/public/profiles/${token}`)
@@ -86,7 +81,7 @@ function RepBookHeader() {
 const SQUIRCLE_PATH = 'M 0 46 C 0 8.12 8.12 0 46 0 C 83.88 0 92 8.12 92 46 C 92 83.88 83.88 92 46 92 C 8.12 92 0 83.88 0 46 Z'
 
 function ProfileAvatar({ url }: { url?: string }) {
-  const img = resolveImg(url)
+  const img = url
   return (
     <svg
       className="up-avatar-svg"
@@ -126,6 +121,7 @@ export default function UserPreview() {
   const [status, setStatus] = useState<'loading' | 'ok' | 'error'>('loading')
   const [errorMsg, setErrorMsg] = useState('')
   const [saving, setSaving] = useState(false)
+  const [saveError, setSaveError] = useState('')
   const captureRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
@@ -135,16 +131,23 @@ export default function UserPreview() {
       .catch((e: Error) => { setErrorMsg(e.message); setStatus('error') })
   }, [token])
 
+  useEffect(() => {
+    if (!saveError) return
+    const timer = setTimeout(() => setSaveError(''), 3000)
+    return () => clearTimeout(timer)
+  }, [saveError])
+
   const handleSave = async () => {
     if (!captureRef.current || saving) return
     setSaving(true)
+    setSaveError('')
     try {
       await document.fonts.ready
       const el = captureRef.current
 
       // 1. 프로필 이미지 → data URL 변환 (html2canvas SVG <image> 미지원 우회)
       let avatarDataUrl: string | undefined
-      const avatarSrcUrl = profile?.profileImageUrl ? resolveImg(profile.profileImageUrl) : undefined
+      const avatarSrcUrl = profile?.profileImageUrl ? profile.profileImageUrl : undefined
       if (avatarSrcUrl) {
         try {
           const res = await fetch(avatarSrcUrl, { mode: 'cors' })
@@ -242,7 +245,7 @@ export default function UserPreview() {
       link.href = out.toDataURL('image/png')
       link.click()
     } catch {
-      // silent fail
+      setSaveError('이미지를 저장하지 못했어요. 잠시 후 다시 시도해주세요.')
     } finally {
       setSaving(false)
     }
@@ -293,7 +296,7 @@ export default function UserPreview() {
             {/* 1행 */}
             <div className="up-books-row">
               {books.slice(0, row1).map((book, i) => {
-                const img = resolveImg(book.image)
+                const img = book.image
                 return (
                   <div key={i} className="up-book" style={{ flex: bookFlex }}>
                     {img
@@ -311,7 +314,7 @@ export default function UserPreview() {
                 <div className="up-separator" />
                 <div className="up-books-row">
                   {books.slice(row1, row1 + row2).map((book, i) => {
-                    const img = resolveImg(book.image)
+                    const img = book.image
                     return (
                       <div key={i} className="up-book" style={{ flex: bookFlex }}>
                         {img
@@ -359,9 +362,12 @@ export default function UserPreview() {
         {status === 'ok' && renderCard()}
       </main>
 
+      {saveError && (
+        <p className="cp-save-error" role="alert">{saveError}</p>
+      )}
       <footer className="cp-footer">
         <a
-          href="https://play.google.com/store/apps/details?id=com.bookiibookii.bookiibookii_d"
+          href={getStoreUrl()}
           className="cp-btn cp-btn--outline"
           target="_blank"
           rel="noopener noreferrer"

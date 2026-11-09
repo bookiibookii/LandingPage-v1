@@ -1,4 +1,5 @@
 import { useEffect, useRef } from "react";
+import { getStoreUrl } from "../../lib/store";
 
 export default function Nav() {
   const navRef = useRef<HTMLElement>(null);
@@ -32,7 +33,7 @@ export default function Nav() {
         </div> */}
         <a
           className="cta-pill"
-          href="https://play.google.com/store/apps/details?id=com.bookiibookii.bookiibookii_d"
+          href={getStoreUrl()}
           target="_blank"
           rel="noopener noreferrer"
         >

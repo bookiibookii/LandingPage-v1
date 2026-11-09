@@ -1,4 +1,5 @@
 import { useEffect, useRef } from 'react'
+import { APP_STORE_URL, PLAY_STORE_URL } from '../../lib/store'
 
 export default function Download() {
   const sectionRef = useRef<HTMLElement>(null)
@@ -26,7 +27,7 @@ export default function Download() {
           책 한 권이 새로운 인연이 될 수 있어요. 부키부키가 함께할게요.
         </p>
         <div className="store-row reveal d2">
-          <button className="store-btn">
+          <a className="store-btn" href={APP_STORE_URL} target="_blank" rel="noopener noreferrer">
             <span className="ic">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="white">
                 <path d="M16.5 2.5c0 1.2-.5 2.4-1.3 3.2-.9.9-2.3 1.6-3.5 1.5-.1-1.2.4-2.4 1.2-3.2.9-.9 2.4-1.5 3.6-1.5zm4 14.4c-.5 1.1-.8 1.6-1.4 2.6-.9 1.4-2.1 3.1-3.6 3.1-1.3 0-1.7-.9-3.5-.9s-2.2.9-3.6.9c-1.5 0-2.7-1.6-3.6-2.9-2.5-3.6-2.8-7.9-1.2-10.2 1.1-1.6 2.9-2.6 4.6-2.6 1.7 0 2.8.9 4.2.9 1.4 0 2.2-.9 4.2-.9 1.5 0 3.1.8 4.2 2.2-3.7 2-3.1 7.3.7 7.8z" />
@@ -36,8 +37,8 @@ export default function Download() {
               <div className="lbl">Download on the</div>
               <div className="name">App Store</div>
             </div>
-          </button>
-          <button className="store-btn">
+          </a>
+          <a className="store-btn" href={PLAY_STORE_URL} target="_blank" rel="noopener noreferrer">
             <span className="ic">
               <svg width="20" height="20" viewBox="0 0 24 24">
                 <path fill="#A4C639" d="M3.6 4.3c-.4.4-.6 1-.6 1.6v12.2c0 .6.2 1.2.6 1.6l9.2-7.7L3.6 4.3z" />
@@ -50,7 +51,7 @@ export default function Download() {
               <div className="lbl">Get it on</div>
               <div className="name">Google Play</div>
             </div>
-          </button>
+          </a>
         </div>
       </div>
     </section>
