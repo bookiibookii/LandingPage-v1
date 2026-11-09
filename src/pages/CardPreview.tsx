@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import html2canvas from 'html2canvas'
+import { getStoreUrl } from '../lib/store'
 
 interface PublicCardData {
   bookAuthor: string
@@ -16,13 +17,7 @@ interface PublicCardData {
 }
 
 const API_BASE = ''
-const S3_HOST = 'https://booki-dev-s3.s3.ap-northeast-2.amazonaws.com'
 const BG_PATTERN = Array(300).fill('BOOKIIBOOKII').join(' ')
-
-function resolveImg(url: string | undefined | null): string | undefined {
-  if (!url) return undefined
-  return url.replace(S3_HOST, '/s3-image')
-}
 
 function stripHyphen(s: string): string {
   return s.replace(/ *-.*$/, '').trim()
@@ -73,7 +68,7 @@ function PhotoCardSplit({ card }: { card: PublicCardData }) {
     <div className="cp-card cp-card--col">
       <div className="cp-split-top">
         {card.imageUrl
-          ? <img src={resolveImg(card.imageUrl)} alt="" className="cp-split-img" crossOrigin="anonymous" />
+          ? <img src={card.imageUrl} alt="" className="cp-split-img" crossOrigin="anonymous" />
           : <div className="cp-split-img-placeholder" />
         }
         {card.bookTitle && (
@@ -96,7 +91,7 @@ function PhotoCardOverlay({ card }: { card: PublicCardData }) {
     <div className="cp-card">
       <div className="cp-overlay-bg">
         {card.imageUrl
-          ? <img src={resolveImg(card.imageUrl)} alt="" className="cp-overlay-img" crossOrigin="anonymous" />
+          ? <img src={card.imageUrl} alt="" className="cp-overlay-img" crossOrigin="anonymous" />
           : <div className="cp-overlay-img-placeholder" />
         }
       </div>
@@ -157,6 +152,7 @@ export default function CardPreview() {
   const [status, setStatus] = useState<'loading' | 'ok' | 'error'>('loading')
   const [errorMsg, setErrorMsg] = useState<string>('')
   const [saving, setSaving] = useState(false)
+  const [saveError, setSaveError] = useState('')
   const captureRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
@@ -166,9 +162,16 @@ export default function CardPreview() {
       .catch((e: Error) => { setErrorMsg(e.message); setStatus('error') })
   }, [id])
 
+  useEffect(() => {
+    if (!saveError) return
+    const timer = setTimeout(() => setSaveError(''), 3000)
+    return () => clearTimeout(timer)
+  }, [saveError])
+
   const handleSave = async () => {
     if (!captureRef.current || saving) return
     setSaving(true)
+    setSaveError('')
     try {
       await document.fonts.ready
       const cardWrapEl = captureRef.current.querySelector<HTMLElement>('.cp-card-wrap')
@@ -291,7 +294,7 @@ export default function CardPreview() {
       link.href = out.toDataURL('image/png')
       link.click()
     } catch {
-      // silent fail
+      setSaveError('이미지를 저장하지 못했어요. 잠시 후 다시 시도해주세요.')
     } finally {
       setSaving(false)
     }
@@ -339,9 +342,12 @@ export default function CardPreview() {
         {status === 'ok' && renderCard()}
       </main>
 
+      {saveError && (
+        <p className="cp-save-error" role="alert">{saveError}</p>
+      )}
       <footer className="cp-footer">
         <a
-          href="https://play.google.com/store/apps/details?id=com.bookiibookii.bookiibookii_d"
+          href={getStoreUrl()}
           className="cp-btn cp-btn--outline"
           target="_blank"
           rel="noopener noreferrer"

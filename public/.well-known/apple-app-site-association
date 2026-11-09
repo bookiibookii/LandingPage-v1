@@ -1,0 +1,16 @@
+{
+  "applinks": {
+    "apps": [],
+    "details": [
+      {
+        "appID": "DAJCZW6W6Y.com.ios.bookiibookii",
+        "appIDs": ["DAJCZW6W6Y.com.ios.bookiibookii"],
+        "paths": ["/share/reading-card/*", "/share/profile/*"],
+        "components": [
+          { "/": "/share/reading-card/*" },
+          { "/": "/share/profile/*" }
+        ]
+      }
+    ]
+  }
+}

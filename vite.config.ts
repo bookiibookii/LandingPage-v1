@@ -14,12 +14,6 @@ export default defineConfig({
         changeOrigin: true,
         secure: false,
       },
-      '/s3-image': {
-        target: 'https://booki-dev-s3.s3.ap-northeast-2.amazonaws.com',
-        changeOrigin: true,
-        secure: false,
-        rewrite: (path) => path.replace(/^\/s3-image/, ''),
-      },
     },
   },
 })
